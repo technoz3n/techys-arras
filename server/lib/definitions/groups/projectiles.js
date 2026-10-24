@@ -692,6 +692,21 @@ Class.minion = {
         }
     ]
 }
+Class.minionAnnihilator = {
+    PARENT: "genericMinion",
+    GUNS: [
+        {
+            POSITION: {
+                LENGTH: 20.5,
+                WIDTH: 19.5
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.destroyer, g.annihilator]),
+                TYPE: "bullet"
+            }
+        }
+    ]
+}
 Class.tinyMinion = {
     PARENT: "minion",
     LABEL: "Swarm Minion",

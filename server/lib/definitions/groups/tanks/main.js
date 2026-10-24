@@ -3,6 +3,12 @@ const { base, dfltskl, smshskl, statnames } = require("../../constants.js");
 const g = require("../../gunvals.js");
 const preset = require("../../presets.js");
 
+const mystical_gun_position = {
+    LENGTH: 3.5,
+    WIDTH: 8.65,
+    ASPECT: 1.2,
+    X: 8
+}
 // Basic Tank
 Class.basic = {
     PARENT: "genericTank",
@@ -1900,7 +1906,8 @@ Class.factory = {
                 WIDTH: 14
             }
         }
-    ]
+    ],
+    UPGRADES_TIER_3: ["factoryfuck"]
 };
 Class.falcon = makeBird("assassin", "Falcon");
 Class.fieldGun = {
@@ -2510,7 +2517,8 @@ Class.necromancer = {
             WAIT_TO_CYCLE: true,
             DELAY_SPAWN: false
         }
-    }, 4, {delayIncrement: 0.75})
+    }, 4, {delayIncrement: 0.75}),
+    UPGRADES_TIER_3: ["miniSummoner", "summoner"]
 };
 Class.nimrod = {
     PARENT: "genericTank",
@@ -3836,6 +3844,57 @@ Class.xHunter = {
     ]
 };
 
+// custom tanks begin here:
+Class.factoryfuck = {
+    PARENT: "genericTank",
+    LABEL: "Factoryfuck",
+    DANGER: 8,
+    STAT_NAMES: statnames.drone,
+    BODY: {
+        FOV: 1.1 * base.FOV,
+        SPEED: 14/15 * base.SPEED
+    },
+    GUNS: weaponArray({
+        POSITION: {
+            LENGTH: 6,
+            WIDTH: 12,
+            ASPECT: 1.2,
+            X: 8
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.minion]),
+            TYPE: "minionAnnihilator",
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: "drone",
+            WAIT_TO_CYCLE: true,
+            MAX_CHILDREN: 8            
+        }
+    }, 4)
+};
+Class.miniSummoner = {
+    PARENT: "genericTank",
+    LABEL: "Miniature Summoner",
+    DANGER: 7,
+    COLOR: "square",
+    UPGRADE_COLOR: "square",
+    NECRO: [4],
+    STAT_NAMES: statnames.necro,
+    SHAPE: 4,
+    MAX_CHILDREN: 24,
+    GUNS: weaponArray({
+        POSITION: mystical_gun_position,
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.drone, g.summoner, { size: 0.8 }]),
+            TYPE: "summonerDrone",
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: "necro",
+            WAIT_TO_CYCLE: true,
+            DELAY_SPAWN: false
+        }
+    }, 4, {delayIncrement: 0.75})
+};
 // Class Tree Modification
 if (Config.teams == 1) {
     removeUpgrades("basic", 2, ["smasher"]);
