@@ -708,7 +708,11 @@ Class.minionAnnihilator = {
     ]
 }
 Class.minionTwin = {
-    PARENT: "genericMinion",
+    PARENT: "minion",
+    BODY: {
+        SPEED: 4,
+        ACCELERATION: 0.9,
+    },
     GUNS: weaponMirror({
         POSITION: {
             LENGTH: 20,
