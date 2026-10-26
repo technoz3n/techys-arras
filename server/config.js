@@ -166,6 +166,26 @@ module.exports = {
             private: false,
 
             properties: {}
+        },
+        {
+            share_client_server: false,
+            host: "localhost:3100",
+            port: 3100,
+            id: "br",
+
+            region: "Local",
+            serverhost: "Local",
+            location: "Localhost",
+            gamemode: ["siege_classic"],
+            player_cap: 80,
+
+            featured: false,
+            unlisted: false,
+            private: false,
+
+            properties: {
+                bot_cap: 15
+            }
         }
     ],
 

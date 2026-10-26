@@ -44,7 +44,7 @@ Class.desmos = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.desmos]),
-                TYPE: ["bullet", {CONTROLLERS: ["snake"]}]
+                TYPE: ["bullet", { CONTROLLERS: ["snake"] }]
             }
         },
         ...weaponMirror({
@@ -192,7 +192,7 @@ Class.twin = {
             SHOOT_SETTINGS: combineStats([g.basic, g.twin]),
             TYPE: "bullet"
         }
-    }, {delayIncrement: 0.5}),
+    }, { delayIncrement: 0.5 }),
     UPGRADES_TIER_2: ["doubleTwin", "tripleShot", "gunner", "hexaTank", "helix"],
     UPGRADES_TIER_3: ["dual", "bulwark", "musket"]
 };
@@ -216,7 +216,7 @@ Class.artillery = {
                 TYPE: "bullet",
                 LABEL: "Secondary"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 19,
@@ -268,7 +268,7 @@ Class.builder = {
     STAT_NAMES: statnames.trap,
     BODY: {
         FOV: 1.15 * base.FOV,
-        SPEED: 14/15 * base.SPEED
+        SPEED: 14 / 15 * base.SPEED
     },
     GUNS: [
         {
@@ -315,7 +315,7 @@ Class.cruiser = {
             TYPE: "swarm",
             STAT_CALCULATOR: "swarm"
         }
-    }, {delayIncrement: 0.5}),
+    }, { delayIncrement: 0.5 }),
     UPGRADES_TIER_3: ["carrier", "battleship", "fortress", "autoCruiser", "commander"]
 };
 Class.destroyer = {
@@ -351,7 +351,7 @@ Class.gunner = {
                 DELAY: 0.5
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.gunner, {speed: 1.2}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.gunner, { speed: 1.2 }]),
                 TYPE: "bullet"
             }
         },
@@ -362,11 +362,11 @@ Class.gunner = {
                 Y: 3.75
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.gunner, {speed: 1.2}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.gunner, { speed: 1.2 }]),
                 TYPE: "bullet"
             }
         }
-    ], {delayIncrement: 0.25}),
+    ], { delayIncrement: 0.25 }),
     UPGRADES_TIER_3: ["autoGunner", "nailgun", "auto4", "machineGunner", "gunnerTrapper", "cyclone", "overgunner"]
 };
 Class.healer = {
@@ -409,7 +409,7 @@ Class.helix = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos]),
-                TYPE: ["bullet", {CONTROLLERS: ["snake"]}]
+                TYPE: ["bullet", { CONTROLLERS: ["snake"] }]
             }
         },
         {
@@ -421,7 +421,7 @@ Class.helix = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos]),
-                TYPE: ["bullet", {CONTROLLERS: [["snake", {invert: true}]]}]
+                TYPE: ["bullet", { CONTROLLERS: [["snake", { invert: true }]] }]
             }
         },
         {
@@ -524,7 +524,7 @@ Class.marksman = {
                 ASPECT: 2.2,
                 X: 10
             }
-        }, 3, {xPosOffset: 5}),
+        }, 3, { xPosOffset: 5 }),
         {
             POSITION: {
                 LENGTH: 24,
@@ -554,7 +554,7 @@ Class.minigun = {
             SHOOT_SETTINGS: combineStats([g.basic, g.minigun]),
             TYPE: "bullet"
         }
-    }, 3, {lengthOffset: 2, delayIncrement: 1/3}),
+    }, 3, { lengthOffset: 2, delayIncrement: 1 / 3 }),
     UPGRADES_TIER_3: ["streamliner", "nailgun", "cropDuster", "barricade", "vulture"]
 };
 Class.overseer = {
@@ -564,7 +564,7 @@ Class.overseer = {
     STAT_NAMES: statnames.drone,
     BODY: {
         FOV: 1.1 * base.FOV,
-        SPEED: 14/15 * base.SPEED
+        SPEED: 14 / 15 * base.SPEED
     },
     GUNS: weaponMirror({
         POSITION: {
@@ -599,7 +599,7 @@ Class.repeater = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.desmos]),
-                TYPE: ["splitterBullet", {CONTROLLERS: ["snake"]}]
+                TYPE: ["splitterBullet", { CONTROLLERS: ["snake"] }]
             }
         },
         ...weaponMirror([
@@ -658,7 +658,7 @@ Class.smasher = {
     DANGER: 6,
     TURRETS: [
         {
-            TYPE: ["hexagonHat_spin", {COLOR: "black"}],
+            TYPE: ["hexagonHat_spin", { COLOR: "black" }],
             POSITION: {
                 SIZE: 21.5
             }
@@ -724,8 +724,8 @@ Class.spiral = {
                 ASPECT: -1.5
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.desmos, { reload: 5/3 }]),
-                TYPE: ["spiralBullet", {CONTROLLERS: ["snake"]}]
+                SHOOT_SETTINGS: combineStats([g.basic, g.desmos, { reload: 5 / 3 }]),
+                TYPE: ["spiralBullet", { CONTROLLERS: ["snake"] }]
             }
         },
         ...weaponMirror({
@@ -875,7 +875,7 @@ Class.underseer = {
             ANGLE: 90
         },
         PROPERTIES: {
-            SHOOT_SETTINGS: combineStats([g.drone, g.sunchip, {reload: 0.8}]),
+            SHOOT_SETTINGS: combineStats([g.drone, g.sunchip, { reload: 0.8 }]),
             TYPE: "sunchip",
             AUTOFIRE: true,
             SYNCS_SKILLS: true,
@@ -1077,7 +1077,7 @@ Class.barricade = {
                 TYPE: "trap",
                 STAT_CALCULATOR: "trap"
             }
-        }, 3, {xPosOffset: 4, delayIncrement: 1/3})
+        }, 3, { xPosOffset: 4, delayIncrement: 1 / 3 })
     ]
 };
 Class.battleship = {
@@ -1105,7 +1105,7 @@ Class.battleship = {
                 STAT_CALCULATOR: "swarm",
                 LABEL: "Guided"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         ...weaponMirror({
             POSITION: {
                 LENGTH: 9,
@@ -1121,7 +1121,7 @@ Class.battleship = {
                 STAT_CALCULATOR: "swarm",
                 LABEL: "Autonomous"
             }
-        }, {delayIncrement: 0.5})
+        }, { delayIncrement: 0.5 })
     ]
 };
 Class.beekeeper = {
@@ -1145,7 +1145,7 @@ Class.beekeeper = {
                 WAIT_TO_CYCLE: true,
                 LABEL: "Secondary"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 19,
@@ -1398,7 +1398,7 @@ Class.bulwark = {
                 STAT_CALCULATOR: "trap"
             }
         }
-    ], {delayIncrement: 0.5})
+    ], { delayIncrement: 0.5 })
 };
 Class.bushwhacker = makeGuard("sniper", "Bushwhacker");
 Class.carrier = {
@@ -1454,8 +1454,8 @@ Class.coil = {
                 Y: -5
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos, { reload: 5/3 }]),
-                TYPE: ["spiralBullet", {CONTROLLERS: ["snake"]}]
+                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos, { reload: 5 / 3 }]),
+                TYPE: ["spiralBullet", { CONTROLLERS: ["snake"] }]
             }
         },
         {
@@ -1466,8 +1466,8 @@ Class.coil = {
                 Y: 5
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos, { reload: 5/3 }]),
-                TYPE: ["spiralBullet", {CONTROLLERS: [["snake", {invert: true}]]}]
+                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos, { reload: 5 / 3 }]),
+                TYPE: ["spiralBullet", { CONTROLLERS: [["snake", { invert: true }]] }]
             }
         },
         ...weaponMirror({
@@ -1504,7 +1504,7 @@ Class.commander = {
     STAT_NAMES: statnames.drone,
     BODY: {
         FOV: base.FOV * 1.15,
-        SPEED: base.SPEED * 14/15
+        SPEED: base.SPEED * 14 / 15
     },
     GUNS: [
         ...weaponArray({
@@ -1536,7 +1536,7 @@ Class.commander = {
                 TYPE: "swarm",
                 STAT_CALCULATOR: "swarm"
             }
-        }, 3, {delayIncrement: 1/3})
+        }, 3, { delayIncrement: 1 / 3 })
     ]
 };
 Class.conqueror = {
@@ -1635,7 +1635,7 @@ Class.crossbow = {
                 WIDTH: 3,
                 Y: 3.5,
                 ANGLE: 15,
-                DELAY: 2/3
+                DELAY: 2 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, g.crossbow, { recoil: 0.5 }]),
@@ -1647,13 +1647,13 @@ Class.crossbow = {
                 LENGTH: 20,
                 WIDTH: 4,
                 Y: 4,
-                DELAY: 1/3
+                DELAY: 1 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.sniper, g.rifle, g.crossbow, { speed: 0.7, maxSpeed: 0.7 }, { recoil: 0.5 }]),
                 TYPE: "bullet"
             }
-        }], {delayOverflow: true}),
+        }], { delayOverflow: true }),
         {
             POSITION: {
                 LENGTH: 24,
@@ -1732,7 +1732,7 @@ Class.deadeye = {
                 ASPECT: 2.2,
                 X: 7
             }
-        }, 2, {xPosOffset: 5}),
+        }, 2, { xPosOffset: 5 }),
         {
             POSITION: {
                 LENGTH: 24,
@@ -1759,7 +1759,7 @@ Class.dual = {
     BODY: {
         FOV: 1.2 * base.FOV
     },
-    CONTROLLERS: [["zoom", {distance: 165}]],
+    CONTROLLERS: [["zoom", { distance: 165 }]],
     GUNS: weaponMirror([
         {
             POSITION: {
@@ -1785,7 +1785,7 @@ Class.dual = {
                 TYPE: "bullet"
             }
         }
-    ], {delayIncrement: 0.5})
+    ], { delayIncrement: 0.5 })
 };
 Class.duplicator = {
     PARENT: "genericTank",
@@ -1794,21 +1794,21 @@ Class.duplicator = {
     STAT_NAMES: statnames.desmos,
     GUNS: [
         {
-            POSITION: [20, 8, -4/3, 0, 0, 20, 0],
+            POSITION: [20, 8, -4 / 3, 0, 0, 20, 0],
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos]),
-                TYPE: ["splitterBullet", {CONTROLLERS: [["snake", {invert: false}]]}]
+                TYPE: ["splitterBullet", { CONTROLLERS: [["snake", { invert: false }]] }]
             }
         },
         {
-            POSITION: [20, 8, -4/3, 0, 0, -20, 0],
+            POSITION: [20, 8, -4 / 3, 0, 0, -20, 0],
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.desmos]),
-                TYPE: ["splitterBullet", {CONTROLLERS: [["snake", {invert: true}]]}]
+                TYPE: ["splitterBullet", { CONTROLLERS: [["snake", { invert: true }]] }]
             }
         },
         ...weaponMirror([{
-            POSITION: [5.625, 9.5, 2, 0.375-1, -8, 111.5, 0]
+            POSITION: [5.625, 9.5, 2, 0.375 - 1, -8, 111.5, 0]
         },
         {
             POSITION: [3.75, 10, 2.125, 0, 4.75, -30, 0]
@@ -1875,7 +1875,7 @@ Class.factory = {
     STAT_NAMES: statnames.drone,
     BODY: {
         FOV: 1.1 * base.FOV,
-        SPEED: 14/15 * base.SPEED
+        SPEED: 14 / 15 * base.SPEED
     },
     GUNS: [
         {
@@ -1929,7 +1929,7 @@ Class.fieldGun = {
                 TYPE: "bullet",
                 LABEL: "Secondary"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 19.2,
@@ -2041,7 +2041,7 @@ Class.fork = {
                 ASPECT: 2.2,
                 X: 15
             }
-        }, 4, {xPosOffset: 5}),
+        }, 4, { xPosOffset: 5 }),
         {
             POSITION: {
                 LENGTH: 29,
@@ -2074,7 +2074,7 @@ Class.fortress = {
                 TYPE: "swarm",
                 STAT_CALCULATOR: "swarm"
             }
-        }, 3, {delayIncrement: 1/3}),
+        }, 3, { delayIncrement: 1 / 3 }),
         ...weaponArray([
             {
                 POSITION: {
@@ -2138,7 +2138,7 @@ Class.gunnerTrapper = {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.power, g.twin, { recoil: 4 }, { recoil: 1.8 }]),
                 TYPE: "bullet"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 12,
@@ -2163,7 +2163,7 @@ Class.hewnDouble = {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.twin, g.doubleTwin, g.hewnDouble, { recoil: 1.15 }]),
                 TYPE: "bullet"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         ...weaponArray(weaponMirror({
             POSITION: {
                 LENGTH: 20,
@@ -2174,7 +2174,7 @@ Class.hewnDouble = {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.doubleTwin, g.hewnDouble]),
                 TYPE: "bullet"
             }
-        }, {delayIncrement: 0.5}), 2)
+        }, { delayIncrement: 0.5 }), 2)
     ]
 };
 Class.hexaTrapper = makeAuto(makeFlank("trapper", 6, "", { extraStats: [g.hexaTrapper], delayIncrement: 0.5, danger: 6 }), "Hexa-Trapper");
@@ -2198,7 +2198,7 @@ Class.infestor = {
             ANGLE: 90
         },
         PROPERTIES: {
-            SHOOT_SETTINGS: combineStats([g.drone, g.sunchip, {reload: 0.5}]),
+            SHOOT_SETTINGS: combineStats([g.drone, g.sunchip, { reload: 0.5 }]),
             TYPE: "eggchip",
             AUTOFIRE: true,
             SYNCS_SKILLS: true,
@@ -2216,13 +2216,13 @@ Class.landmine = {
     TOOLTIP: "Stay still to turn invisible.",
     TURRETS: [
         {
-            TYPE: ["hexagonHat_spin", {COLOR: "black"}],
+            TYPE: ["hexagonHat_spin", { COLOR: "black" }],
             POSITION: {
                 SIZE: 21.5
             }
         },
         {
-            TYPE: ["hexagonHat_spinFaster", {COLOR: "black"}],
+            TYPE: ["hexagonHat_spinFaster", { COLOR: "black" }],
             POSITION: {
                 SIZE: 21.5,
                 ANGLE: 90
@@ -2261,7 +2261,7 @@ Class.machineGunner = {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.gunner, g.machineGunner]),
                 TYPE: "bullet"
             }
-        }], {delayIncrement: 0.2}),
+        }], { delayIncrement: 0.2 }),
         {
             POSITION: {
                 LENGTH: 14,
@@ -2283,7 +2283,7 @@ Class.manager = {
     STAT_NAMES: statnames.drone,
     BODY: {
         FOV: 1.1 * base.FOV,
-        SPEED: 14/15 * base.SPEED
+        SPEED: 14 / 15 * base.SPEED
     },
     INVISIBLE: [0.08, 0.03],
     TOOLTIP: "Stay still to turn invisible.",
@@ -2326,7 +2326,7 @@ Class.maleficitor = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.drone, g.sunchip, g.maleficitor]),
-                TYPE: ["sunchip", {INVISIBLE: [0.06, 0.03]}],
+                TYPE: ["sunchip", { INVISIBLE: [0.06, 0.03] }],
                 AUTOFIRE: true,
                 SYNCS_SKILLS: true,
                 STAT_CALCULATOR: "necro",
@@ -2374,7 +2374,7 @@ Class.megaSmasher = {
     },
     TURRETS: [
         {
-            TYPE: ["hexagonHat_spin", {COLOR: "black"}],
+            TYPE: ["hexagonHat_spin", { COLOR: "black" }],
             POSITION: { SIZE: 25 }
         }
     ]
@@ -2411,7 +2411,7 @@ Class.mortar = {
                 TYPE: "bullet",
                 LABEL: "Secondary"
             }
-        }], {delayIncrement: 0.2}),
+        }], { delayIncrement: 0.2 }),
         {
             POSITION: {
                 LENGTH: 19,
@@ -2449,7 +2449,7 @@ Class.musket = {
                 TYPE: "bullet"
             }
         }
-    ], {delayIncrement: 0.5})
+    ], { delayIncrement: 0.5 })
 };
 Class.nailgun = {
     PARENT: "genericTank",
@@ -2457,7 +2457,7 @@ Class.nailgun = {
     DANGER: 7,
     BODY: {
         FOV: base.FOV * 1.1,
-        SPEED: base.SPEED * 14/15
+        SPEED: base.SPEED * 14 / 15
     },
     GUNS: [
         ...weaponMirror({
@@ -2468,10 +2468,10 @@ Class.nailgun = {
                 DELAY: 0.25
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.power, g.twin, g.nailgun, {size: 2/3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.power, g.twin, g.nailgun, { size: 2 / 3 }]),
                 TYPE: "bullet"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 20,
@@ -2517,7 +2517,7 @@ Class.necromancer = {
             WAIT_TO_CYCLE: true,
             DELAY_SPAWN: false
         }
-    }, 4, {delayIncrement: 0.75}),
+    }, 4, { delayIncrement: 0.75 }),
     UPGRADES_TIER_3: ["miniSummoner", "summoner"]
 };
 Class.nimrod = {
@@ -2572,7 +2572,7 @@ Class.octoTank = {
     LABEL: "Octo Tank",
     DANGER: 7,
     GUNS: weaponArray([
-    // Must be kept like this to preserve visual layering
+        // Must be kept like this to preserve visual layering
         {
             POSITION: {
                 LENGTH: 18,
@@ -2619,7 +2619,7 @@ Class.ordnance = {
                 TYPE: "bullet",
                 LABEL: "Secondary"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 24,
@@ -2685,7 +2685,7 @@ Class.overgunner = makeOver({
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.power, g.twin, { speed: 0.7, maxSpeed: 0.7 }, g.flankGuard, { recoil: 1.8 }]),
                 TYPE: "bullet"
             }
-        }, {delayIncrement: 0.5}),
+        }, { delayIncrement: 0.5 }),
         {
             POSITION: {
                 LENGTH: 12,
@@ -2701,7 +2701,7 @@ Class.overlord = {
     STAT_NAMES: statnames.drone,
     BODY: {
         FOV: 1.1 * base.FOV,
-        SPEED: 13/15 * base.SPEED
+        SPEED: 13 / 15 * base.SPEED
     },
     MAX_CHILDREN: 8,
     GUNS: weaponArray({
@@ -2728,7 +2728,7 @@ Class.overtrapper = makeOver({
     STAT_NAMES: statnames.mixed,
     BODY: {
         FOV: base.FOV * 1.2,
-        SPEED: base.SPEED * 14/15
+        SPEED: base.SPEED * 14 / 15
     },
     GUNS: [
         {
@@ -2810,7 +2810,7 @@ Class.pentaShot = {
                 WIDTH: 8,
                 Y: 3,
                 ANGLE: 30,
-                DELAY: 2/3
+                DELAY: 2 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot]),
@@ -2823,7 +2823,7 @@ Class.pentaShot = {
                 WIDTH: 8,
                 Y: 2,
                 ANGLE: 15,
-                DELAY: 1/3
+                DELAY: 1 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot]),
@@ -2850,9 +2850,9 @@ Class.predator = {
     DANGER: 7,
     BODY: {
         FOV: base.FOV * 1.325,
-        SPEED: base.SPEED * 14/15
+        SPEED: base.SPEED * 14 / 15
     },
-    CONTROLLERS: [["zoom", {distance: 365}]],
+    CONTROLLERS: [["zoom", { distance: 365 }]],
     GUNS: [
         {
             POSITION: {
@@ -2907,8 +2907,8 @@ Class.python = {
                 ASPECT: -1.5
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.desmos, { reload: 5/3 }]),
-                TYPE: ["pythonBullet", {CONTROLLERS: ["snake"]}]
+                SHOOT_SETTINGS: combineStats([g.basic, g.desmos, { reload: 5 / 3 }]),
+                TYPE: ["pythonBullet", { CONTROLLERS: ["snake"] }]
             }
         },
         ...weaponMirror({
@@ -2938,7 +2938,7 @@ Class.quadruplex = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.desmos, g.twin, { reload: 2 }]),
-                TYPE: ["bullet", {CONTROLLERS: [["snake", {invert: true, amplitude: 180, yOffset: 50}]]}]
+                TYPE: ["bullet", { CONTROLLERS: [["snake", { invert: true, amplitude: 180, yOffset: 50 }]] }]
             }
         },
         {
@@ -2950,7 +2950,7 @@ Class.quadruplex = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.desmos, g.twin, { reload: 2 }]),
-                TYPE: ["bullet", {CONTROLLERS: [["snake", {invert: true, amplitude: 180, yOffset: -50}]]}]
+                TYPE: ["bullet", { CONTROLLERS: [["snake", { invert: true, amplitude: 180, yOffset: -50 }]] }]
             }
         },
         {
@@ -2962,7 +2962,7 @@ Class.quadruplex = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.desmos, g.twin, { reload: 2 }]),
-                TYPE: ["bullet", {CONTROLLERS: [["snake", {invert: false, amplitude: 180, yOffset: -50}]]}]
+                TYPE: ["bullet", { CONTROLLERS: [["snake", { invert: false, amplitude: 180, yOffset: -50 }]] }]
             }
         },
         {
@@ -2974,7 +2974,7 @@ Class.quadruplex = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.desmos, g.twin, { reload: 2 }]),
-                TYPE: ["bullet", {CONTROLLERS: [["snake", {invert: false, amplitude: 180, yOffset: 50}]]}]
+                TYPE: ["bullet", { CONTROLLERS: [["snake", { invert: false, amplitude: 180, yOffset: 50 }]] }]
             }
         },
         ...weaponArray(weaponMirror({
@@ -2986,7 +2986,7 @@ Class.quadruplex = {
                 Y: -7,
                 ANGLE: 45
             }
-        }, {delayIncrement: 0.5}), 4)
+        }, { delayIncrement: 0.5 }), 4)
     ]
 };
 Class.ranger = {
@@ -3025,7 +3025,7 @@ Class.redistributor = {
             POSITION: {
                 LENGTH: 26,
                 WIDTH: 7,
-                DELAY: 2/3
+                DELAY: 2 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.lowPower, g.machineGun, { recoil: 1.15 }]),
@@ -3036,7 +3036,7 @@ Class.redistributor = {
             POSITION: {
                 LENGTH: 23,
                 WIDTH: 10,
-                DELAY: 1/3
+                DELAY: 1 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.lowPower, g.machineGun, { recoil: 1.15 }]),
@@ -3070,7 +3070,7 @@ Class.revolver = {
                 ASPECT: 2.2,
                 X: 5
             }
-        }, 2, {xPosOffset: 5}),
+        }, 2, { xPosOffset: 5 }),
         {
             POSITION: {
                 LENGTH: 20,
@@ -3143,8 +3143,8 @@ Class.septaTrapper = {
                 POSITION: {
                     LENGTH: 15,
                     WIDTH: 7,
-                    ANGLE: 360/7,
-                    DELAY: 1/3
+                    ANGLE: 360 / 7,
+                    DELAY: 1 / 3
                 }
             },
             {
@@ -3153,8 +3153,8 @@ Class.septaTrapper = {
                     WIDTH: 7,
                     ASPECT: 1.7,
                     X: 15,
-                    ANGLE: 360/7,
-                    DELAY: 1/3
+                    ANGLE: 360 / 7,
+                    DELAY: 1 / 3
                 },
                 PROPERTIES: {
                     SHOOT_SETTINGS: combineStats([g.trap, g.hexaTrapper]),
@@ -3166,8 +3166,8 @@ Class.septaTrapper = {
                 POSITION: {
                     LENGTH: 15,
                     WIDTH: 7,
-                    ANGLE: 360/7 * 2,
-                    DELAY: 2/3
+                    ANGLE: 360 / 7 * 2,
+                    DELAY: 2 / 3
                 }
             },
             {
@@ -3176,8 +3176,8 @@ Class.septaTrapper = {
                     WIDTH: 7,
                     ASPECT: 1.7,
                     X: 15,
-                    ANGLE: 360/7 * 2,
-                    DELAY: 2/3
+                    ANGLE: 360 / 7 * 2,
+                    DELAY: 2 / 3
                 },
                 PROPERTIES: {
                     SHOOT_SETTINGS: combineStats([g.trap, g.hexaTrapper]),
@@ -3189,7 +3189,7 @@ Class.septaTrapper = {
                 POSITION: {
                     LENGTH: 15,
                     WIDTH: 7,
-                    ANGLE: 360/7 * 3,
+                    ANGLE: 360 / 7 * 3,
                     DELAY: 1
                 }
             },
@@ -3199,7 +3199,7 @@ Class.septaTrapper = {
                     WIDTH: 7,
                     ASPECT: 1.7,
                     X: 15,
-                    ANGLE: 360/7 * 3,
+                    ANGLE: 360 / 7 * 3,
                     DELAY: 1
                 },
                 PROPERTIES: {
@@ -3208,7 +3208,7 @@ Class.septaTrapper = {
                     STAT_CALCULATOR: "trap"
                 }
             }
-        ], {delayOverflow: true})
+        ], { delayOverflow: true })
     ]
 };
 Class.shotgun = {
@@ -3391,7 +3391,7 @@ Class.spike = {
         SPEED: base.SPEED
     },
     TURRETS: weaponArray([{
-        TYPE: ["triangleHat_spin", {COLOR: "black"}],
+        TYPE: ["triangleHat_spin", { COLOR: "black" }],
         POSITION: {
             SIZE: 18
         }
@@ -3408,7 +3408,7 @@ Class.spreadshot = {
                 WIDTH: 4,
                 Y: 0.8,
                 ANGLE: 71.5,
-                DELAY: 5/6
+                DELAY: 5 / 6
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery, g.twin, g.spreadshot]),
@@ -3422,7 +3422,7 @@ Class.spreadshot = {
                 WIDTH: 4,
                 Y: 1,
                 ANGLE: 56.5,
-                DELAY: 4/6
+                DELAY: 4 / 6
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery, g.twin, g.spreadshot]),
@@ -3436,7 +3436,7 @@ Class.spreadshot = {
                 WIDTH: 4,
                 Y: 1.2,
                 ANGLE: 41.5,
-                DELAY: 3/6
+                DELAY: 3 / 6
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery, g.twin, g.spreadshot]),
@@ -3450,7 +3450,7 @@ Class.spreadshot = {
                 WIDTH: 4,
                 Y: 1.4,
                 ANGLE: 26.5,
-                DELAY: 2/6
+                DELAY: 2 / 6
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery, g.twin, g.spreadshot]),
@@ -3464,7 +3464,7 @@ Class.spreadshot = {
                 WIDTH: 4,
                 Y: 1,
                 ANGLE: 15,
-                DELAY: 1/6
+                DELAY: 1 / 6
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.pelleter, g.artillery, g.twin, g.spreadshot]),
@@ -3521,7 +3521,7 @@ Class.streamliner = {
             SHOOT_SETTINGS: combineStats([g.basic, g.minigun, g.streamliner]),
             TYPE: "bullet"
         }
-    }, 5, {lengthOffset: 2, delayIncrement: 0.2})
+    }, 5, { lengthOffset: 2, delayIncrement: 0.2 })
 };
 Class.surfer = {
     PARENT: "genericTank",
@@ -3600,7 +3600,7 @@ Class.surgeon = {
             },
             PROPERTIES: {
                 MAX_CHILDREN: 2,
-                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, {speed: 0.9, maxSpeed: 0.9, size: 1.1}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.setTrap, { speed: 0.9, maxSpeed: 0.9, size: 1.1 }]),
                 TYPE: "medkit",
                 NO_LIMITATIONS: true,
                 SYNCS_SKILLS: true,
@@ -3685,7 +3685,7 @@ Class.triplex = {
                 ASPECT: -1.5
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot, {speed: 1.25, maxSpeed: 1.25}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot, { speed: 1.25, maxSpeed: 1.25 }]),
                 TYPE: "bullet"
             }
         },
@@ -3699,7 +3699,7 @@ Class.triplex = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot, g.desmos]),
-                TYPE: ["bullet", {CONTROLLERS: ["snake"]}]
+                TYPE: ["bullet", { CONTROLLERS: ["snake"] }]
             }
         },
         {
@@ -3712,7 +3712,7 @@ Class.triplex = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot, g.desmos]),
-                TYPE: ["bullet", {CONTROLLERS: [["snake", {invert: true}]]}]
+                TYPE: ["bullet", { CONTROLLERS: [["snake", { invert: true }]] }]
             }
         },
         ...weaponMirror([{
@@ -3732,7 +3732,7 @@ Class.triplex = {
                 ASPECT: -4,
                 ANGLE: 22.5
             }
-        }], {delayIncrement: 0.5})
+        }], { delayIncrement: 0.5 })
     ]
 };
 Class.twister = {
@@ -3757,7 +3757,7 @@ Class.twister = {
                 ASPECT: -1.4
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.artillery, g.artillery, g.skimmer, {speed: 0.6, reload: 4/3, shudder: 0.1}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.pounder, g.artillery, g.artillery, g.skimmer, { speed: 0.6, reload: 4 / 3, shudder: 0.1 }]),
                 TYPE: "spinmissile",
                 STAT_CALCULATOR: "sustained+lowspeed"
             }
@@ -3785,10 +3785,10 @@ Class.vulture = makeBird({
                 LENGTH: 20,
                 WIDTH: 7.5,
                 ASPECT: -1.5,
-                DELAY: 1/3
+                DELAY: 1 / 3
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.minigun, {size: 7/7.5}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.minigun, { size: 7 / 7.5 }]),
                 TYPE: "bullet"
             }
         },
@@ -3797,10 +3797,10 @@ Class.vulture = makeBird({
                 LENGTH: 18,
                 WIDTH: 8,
                 ASPECT: -1.5,
-                DELAY: 2/3
+                DELAY: 2 / 3
             },
             PROPERTIES: {
-                SHOOT_SETTINGS: combineStats([g.basic, g.minigun, {size: 7/8}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.minigun, { size: 7 / 8 }]),
                 TYPE: "bullet"
             }
         }
@@ -3811,7 +3811,7 @@ Class.xHunter = {
     LABEL: "X-Hunter",
     DANGER: 7,
     BODY: Class.hunter.BODY,
-    CONTROLLERS: [["zoom", {distance: 550}]],
+    CONTROLLERS: [["zoom", { distance: 550 }]],
     GUNS: [
         {
             POSITION: {
@@ -3852,25 +3852,30 @@ Class.factoryfuck = {
     STAT_NAMES: statnames.drone,
     BODY: {
         FOV: 1.1 * base.FOV,
-        SPEED: 14/15 * base.SPEED
+        SPEED: 14 / 15 * base.SPEED
     },
-    GUNS: weaponArray({
-        POSITION: {
-            LENGTH: 6,
-            WIDTH: 12,
-            ASPECT: 1.2,
-            X: 8
-        },
-        PROPERTIES: {
-            SHOOT_SETTINGS: combineStats([g.minion]),
-            TYPE: "minionAnnihilator",
-            AUTOFIRE: true,
-            SYNCS_SKILLS: true,
-            STAT_CALCULATOR: "drone",
-            WAIT_TO_CYCLE: true,
-            MAX_CHILDREN: 8            
-        }
-    }, 4)
+    GUNS: [
+        ...[0, 90, 180, 270].map(angle => ({
+            POSITION: { LENGTH: 15.5, WIDTH: 11, ANGLE: angle }
+        })),
+
+        ...[0, 90, 180, 270].map(angle => ({
+            POSITION: { LENGTH: 2, WIDTH: 14, X: 15.5, ANGLE: angle },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.minion]),
+                TYPE: "minionTwin",
+                AUTOFIRE: true,
+                SYNCS_SKILLS: true,
+                STAT_CALCULATOR: "drone",
+                WAIT_TO_CYCLE: true,
+                MAX_CHILDREN: 2
+            }
+        })),
+
+        ...[0, 90, 180, 270].map(angle => ({
+            POSITION: { LENGTH: 12, WIDTH: 14, ANGLE: angle }
+        }))
+    ]
 };
 Class.miniSummoner = {
     PARENT: "genericTank",
@@ -3893,7 +3898,7 @@ Class.miniSummoner = {
             WAIT_TO_CYCLE: true,
             DELAY_SPAWN: false
         }
-    }, 4, {delayIncrement: 0.75})
+    }, 4, { delayIncrement: 0.75 })
 };
 // Class Tree Modification
 if (Config.teams == 1) {

@@ -9,7 +9,7 @@ Class.casing = {
     LABEL: "Shell",
     TYPE: "swarm"
 }
-Class.developerBullet = {PARENT: "bullet", SHAPE: [[-1, -1], [1, -1], [2, 0], [1, 1], [-1, 1]]}
+Class.developerBullet = { PARENT: "bullet", SHAPE: [[-1, -1], [1, -1], [2, 0], [1, 1], [-1, 1]] }
 Class.flare = {
     PARENT: "growBullet",
     LABEL: "Flare",
@@ -17,11 +17,11 @@ Class.flare = {
 }
 Class.growBullet = {
     PARENT: "bullet",
-    MOTION_TYPE: ["grow", {speed: 0.75}]
+    MOTION_TYPE: ["grow", { speed: 0.75 }]
 }
 Class.masterBullet = {
     PARENT: "missile",
-    FACING_TYPE: ["spin", {speed: 2}],
+    FACING_TYPE: ["spin", { speed: 2 }],
     MOTION_TYPE: "motor",
     HAS_NO_RECOIL: false,
     DIE_AT_RANGE: false,
@@ -76,21 +76,21 @@ Class.masterBullet = {
 Class.satelliteBullet = {
     PARENT: "bullet",
     ANGLE: 60,
-    CONTROLLERS: [["whirlwind", {useOwnMaster: true}]],
+    CONTROLLERS: [["whirlwind", { useOwnMaster: true }]],
     HAS_NO_RECOIL: true,
     AI: {
-        SPEED: 2 
+        SPEED: 2
     },
-    GUNS: (() => { 
+    GUNS: (() => {
         let output = []
         for (let i = 0; i < 3; i++) {
             output.push({
-                POSITION: {WIDTH: 16, LENGTH: 1, DELAY: 0},
+                POSITION: { WIDTH: 16, LENGTH: 1, DELAY: 0 },
                 PROPERTIES: {
-                    SHOOT_SETTINGS: combineStats([g.satellite, {reload: 0}]), 
-                    TYPE: ["satellite", {ANGLE: i * 120, INDEPENDENT: true}], 
-                    MAX_CHILDREN: 1,   
-                    AUTOFIRE: true,  
+                    SHOOT_SETTINGS: combineStats([g.satellite, { reload: 0 }]),
+                    TYPE: ["satellite", { ANGLE: i * 120, INDEPENDENT: true }],
+                    MAX_CHILDREN: 1,
+                    AUTOFIRE: true,
                     SYNCS_SKILLS: false,
                     WAIT_TO_CYCLE: true
                 }
@@ -101,7 +101,7 @@ Class.satelliteBullet = {
 }
 Class.speedBullet = {
     PARENT: "bullet",
-    MOTION_TYPE: ["glide", {damp: -0.0125}]
+    MOTION_TYPE: ["glide", { damp: -0.0125 }]
 }
 Class.spiralBulletSegment = {
     PARENT: "bullet",
@@ -112,7 +112,7 @@ Class.spiralBullet = {
     ON: [
         {
             event: "tick",
-            handler: ({body}) => {
+            handler: ({ body }) => {
                 const numOfSegments = 4;
                 const segmentClass = "spiralBulletSegment";
 
@@ -132,13 +132,13 @@ Class.spiralBullet = {
                 body.store.snakeSegments = body.store.snakeSegments.filter((x) => !x.isDead())
                 let previous = body;
                 const children = body.store.snakeSegments;
-            
+
                 for (const child of children) {
                     const dx = child.x - previous.x;
                     const dy = child.y - previous.y;
                     const distance = Math.hypot(dx, dy) || 1; // /0 possible ig
                     const factor = (child.size + previous.size) * 1 / distance;
-        
+
                     child.x = previous.x + dx * factor;
                     child.y = previous.y + dy * factor;
                     child.velocity.x = 0; // No natural move!
@@ -155,7 +155,7 @@ Class.pythonBullet = {
     ON: [
         {
             event: "tick",
-            handler: ({body}) => {
+            handler: ({ body }) => {
                 const numOfSegments = 8;
                 const segmentClass = "spiralBulletSegment";
 
@@ -174,13 +174,13 @@ Class.pythonBullet = {
                 body.store.snakeSegments = body.store.snakeSegments.filter((x) => !x.isDead())
                 let previous = body;
                 const children = body.store.snakeSegments;
-            
+
                 for (const child of children) {
                     const dx = child.x - previous.x;
                     const dy = child.y - previous.y;
                     const distance = Math.hypot(dx, dy) || 1; // /0 possible ig
                     const factor = (child.size + previous.size) * 1 / distance;
-        
+
                     child.x = previous.x + dx * factor;
                     child.y = previous.y + dy * factor;
                     child.velocity.x = 0; // No natural move!
@@ -202,7 +202,7 @@ Class.undertowBullet = {
                     let diffX = instance.x - body.x,
                         diffY = instance.y - body.y,
                         dist2 = diffX ** 2 + diffY ** 2;
-                    if (dist2 <= ((body.size / 12)*250) ** 1.9) {
+                    if (dist2 <= ((body.size / 12) * 250) ** 1.9) {
                         if ((instance.team != body.team || (instance.type == "undertowEffect" && instance.master.id == body.master.id)) && instance.type != "wall" && instance.isTurret != true) {
                             if (instance.type == "undertowEffect") {
                                 forceMulti = 1
@@ -214,7 +214,7 @@ Class.undertowBullet = {
                             instance.velocity.x += util.clamp(body.x - instance.x, -90, 90) * instance.damp * forceMulti;//0.05
                             instance.velocity.y += util.clamp(body.y - instance.y, -90, 90) * instance.damp * forceMulti;//0.05
                             if (instance.type != "undertowEffect" && instance.type != "bullet" && instance.type != "swarm" && instance.type != "drone" && instance.type != "trap" && instance.type != "dominator") {
-                                let o = new Entity({x: instance.x, y: instance.y})
+                                let o = new Entity({ x: instance.x, y: instance.y })
                                 o.define("undertowEffect")
                                 o.team = body.team;
                                 o.color = instance.color;
@@ -278,7 +278,7 @@ Class.missile = {
             POSITION: [14, 6, 1, 0, -2, 130, 0],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, {speed: 1.3, maxSpeed: 1.3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, { speed: 1.3, maxSpeed: 1.3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "thruster",
                 WAIT_TO_CYCLE: true
@@ -288,7 +288,7 @@ Class.missile = {
             POSITION: [14, 6, 1, 0, 2, 230, 0],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, {speed: 1.3, maxSpeed: 1.3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, { speed: 1.3, maxSpeed: 1.3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "thruster",
                 WAIT_TO_CYCLE: true
@@ -303,7 +303,7 @@ Class.hypermissile = {
             POSITION: [14, 6, 1, 0, -2, 150, 0],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, {reload: 3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, { reload: 3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "thruster"
             }
@@ -312,7 +312,7 @@ Class.hypermissile = {
             POSITION: [14, 6, 1, 0, 2, 210, 0],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, {reload: 3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, { reload: 3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "thruster"
             }
@@ -321,7 +321,7 @@ Class.hypermissile = {
             POSITION: [14, 6, 1, 0, -2, 90, 0.5],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, {reload: 3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, { reload: 3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }]
             }
         },
@@ -330,7 +330,7 @@ Class.hypermissile = {
             PROPERTIES: {
                 AUTOFIRE: true,
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, {reload: 3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, { reload: 3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }]
             }
         }
@@ -352,12 +352,12 @@ Class.launcherMissile = {
 }
 Class.spinmissile = {
     PARENT: "missile",
-    FACING_TYPE: ["spin", {speed: 0.2}],
+    FACING_TYPE: ["spin", { speed: 0.2 }],
     GUNS: weaponArray({
         POSITION: [14, 8, 1, 0, 0, 0, 0.5],
         PROPERTIES: {
             AUTOFIRE: true,
-            SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, {reload: 0.6, size: 1.1, shudder: 0.3}]),
+            SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, { reload: 0.6, size: 1.1, shudder: 0.3 }]),
             TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
             STAT_CALCULATOR: "thruster",
             WAIT_TO_CYCLE: true
@@ -370,7 +370,7 @@ Class.hyperspinmissile = {
         POSITION: [14, 8, 1, 0, 0, 0, 0],
         PROPERTIES: {
             AUTOFIRE: true,
-            SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, {size: 1.1}]),
+            SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, { size: 1.1 }]),
             TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
             STAT_CALCULATOR: "thruster"
         }
@@ -397,7 +397,7 @@ Class.hive = {
             STAT_CALCULATOR: "swarm",
             AUTOFIRE: true
         }
-    }, 5, {delayIncrement: 0.2})
+    }, 5, { delayIncrement: 0.2 })
 }
 Class.protoHive = {
     PARENT: "bullet",
@@ -418,7 +418,7 @@ Class.protoHive = {
             STAT_CALCULATOR: "swarm",
             AUTOFIRE: true
         }
-    }, 3, {delayIncrement: 1/3})
+    }, 3, { delayIncrement: 1 / 3 })
 }
 Class.hyperHive = {
     PARENT: "bullet",
@@ -439,7 +439,7 @@ Class.hyperHive = {
             STAT_CALCULATOR: "swarm",
             AUTOFIRE: true
         }
-    }, 7, {delayIncrement: 1/7})
+    }, 7, { delayIncrement: 1 / 7 })
 }
 Class.snake = {
     PARENT: "missile",
@@ -523,7 +523,7 @@ Class.kronosMissile = {
             POSITION: [4, 6, 1.6, 13, 0, 90, 0.5],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.trap, g.lowPower, {reload: 2, speed: 1.3, maxSpeed: 1.3, range: 0.5}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.lowPower, { reload: 2, speed: 1.3, maxSpeed: 1.3, range: 0.5 }]),
                 TYPE: ["trap", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "trap"
             }
@@ -531,7 +531,7 @@ Class.kronosMissile = {
             POSITION: [4, 6, 1.6, 13, 0, -90, 0.5],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.trap, g.lowPower, {reload: 2, speed: 1.3, maxSpeed: 1.3, range: 0.5}]),
+                SHOOT_SETTINGS: combineStats([g.trap, g.lowPower, { reload: 2, speed: 1.3, maxSpeed: 1.3, range: 0.5 }]),
                 TYPE: ["trap", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "trap"
             }
@@ -539,7 +539,7 @@ Class.kronosMissile = {
             POSITION: [14, 6, 1, 0, -2, 150, 0],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, {speed: 1.3, maxSpeed: 1.3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, { speed: 1.3, maxSpeed: 1.3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "thruster"
             }
@@ -547,7 +547,7 @@ Class.kronosMissile = {
             POSITION: [14, 6, 1, 0, 2, 210, 0],
             PROPERTIES: {
                 AUTOFIRE: true,
-                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, {speed: 1.3, maxSpeed: 1.3}]),
+                SHOOT_SETTINGS: combineStats([g.basic, g.lowPower, { speed: 1.3, maxSpeed: 1.3 }]),
                 TYPE: ["bullet", { PERSISTS_AFTER_DEATH: true }],
                 STAT_CALCULATOR: "thruster"
             }
@@ -617,7 +617,7 @@ Class.healerSanctuaryBullet = {
 }
 
 // Drones
-Class.bigBall = {PARENT: "drone", SHAPE: 8}
+Class.bigBall = { PARENT: "drone", SHAPE: 8 }
 Class.sunchip = {
     PARENT: "drone",
     SHAPE: 4,
@@ -632,17 +632,17 @@ Class.sunchip = {
     },
     DRAW_HEALTH: false
 }
-Class.eggchip = {PARENT: "sunchip", NECRO: [0], SHAPE: 0}
+Class.eggchip = { PARENT: "sunchip", NECRO: [0], SHAPE: 0 }
 
 // Mystical Drones
-Class.summonerDrone = {PARENT: "sunchip", NECRO: false}
-Class.sorcererDrone = {...Class.summonerDrone, SHAPE: 0}
-Class.enchantressDrone = {...Class.summonerDrone, SHAPE: 3}
-Class.exorcistorDrone = {...Class.summonerDrone, SHAPE: 5}
-Class.shamanDrone = {...Class.summonerDrone, SHAPE: 6}
-Class.sangomaDrone = {...Class.summonerDrone, SHAPE: 7}
-Class.preacherDrone = {...Class.summonerDrone, SHAPE: 8}
-Class.herbalistDrone = {...Class.summonerDrone, SHAPE: 9}
+Class.summonerDrone = { PARENT: "sunchip", NECRO: false }
+Class.sorcererDrone = { ...Class.summonerDrone, SHAPE: 0 }
+Class.enchantressDrone = { ...Class.summonerDrone, SHAPE: 3 }
+Class.exorcistorDrone = { ...Class.summonerDrone, SHAPE: 5 }
+Class.shamanDrone = { ...Class.summonerDrone, SHAPE: 6 }
+Class.sangomaDrone = { ...Class.summonerDrone, SHAPE: 7 }
+Class.preacherDrone = { ...Class.summonerDrone, SHAPE: 8 }
+Class.herbalistDrone = { ...Class.summonerDrone, SHAPE: 9 }
 
 // Minions
 Class.genericMinion = {
@@ -707,6 +707,20 @@ Class.minionAnnihilator = {
         }
     ]
 }
+Class.minionTwin = {
+    PARENT: "genericMinion",
+    GUNS: weaponMirror({
+        POSITION: {
+            LENGTH: 20,
+            WIDTH: 8,
+            Y: 5.5
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([g.basic, g.twin]),
+            TYPE: "bullet"
+        }
+    }, { delayIncrement: 0.5 })
+}
 Class.tinyMinion = {
     PARENT: "minion",
     LABEL: "Swarm Minion",
@@ -725,7 +739,7 @@ Class.tinyMinion = {
         PUSHABILITY: 0.5,
         FOV: 1.5
     },
-    AI: {BLIND: true},
+    AI: { BLIND: true },
     GUNS: [
         {
             POSITION: [17, 9, 1, 0, 0, 0, 0],
@@ -733,7 +747,7 @@ Class.tinyMinion = {
                 SHOOT_SETTINGS: combineStats([g.basic, g.minionGun, g.lowPower]),
                 WAIT_TO_CYCLE: true,
                 TYPE: "bullet"
-            } 
+            }
         }
     ],
     DIE_AT_RANGE: true,
@@ -775,7 +789,7 @@ Class.desmosMinion = {
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.minionGun, g.desmos]),
-                TYPE: ["bullet", {CONTROLLERS: ["snake"]}]
+                TYPE: ["bullet", { CONTROLLERS: ["snake"] }]
             }
         },
         ...weaponMirror({
@@ -795,7 +809,7 @@ Class.wranglerMinion = {
     ON: [
         {
             event: "tick",
-            handler: ({body}) => {
+            handler: ({ body }) => {
                 const numOfSegments = 2;
                 const segmentClass = "genericEntity";
 
@@ -814,13 +828,13 @@ Class.wranglerMinion = {
                 body.store.snakeSegments = body.store.snakeSegments.filter((x) => !x.isDead())
                 let previous = body;
                 const children = body.store.snakeSegments;
-            
+
                 for (const child of children) {
                     const dx = child.x - previous.x;
                     const dy = child.y - previous.y;
                     const distance = Math.hypot(dx, dy) || 1; // /0 possible ig
                     const factor = (child.size + previous.size) * 1 / distance;
-        
+
                     child.x = previous.x + dx * factor;
                     child.y = previous.y + dy * factor;
                     child.velocity.x = 0; // No natural move!
@@ -852,18 +866,18 @@ Class.satelliteTrap = {
     CONTROLLERS: ["whirlwind"],
     HAS_NO_RECOIL: true,
     AI: {
-        SPEED: 2 
+        SPEED: 2
     },
-    GUNS: (() => { 
+    GUNS: (() => {
         let output = []
         for (let i = 0; i < 3; i++) {
             output.push({
-                POSITION: {WIDTH: 16, LENGTH: 1, DELAY: 0},
+                POSITION: { WIDTH: 16, LENGTH: 1, DELAY: 0 },
                 PROPERTIES: {
-                    SHOOT_SETTINGS: combineStats([g.satellite, {reload: 0}]), 
-                    TYPE: ["satellite", {ANGLE: i * 120, INDEPENDENT: true}], 
-                    MAX_CHILDREN: 1,   
-                    AUTOFIRE: true,  
+                    SHOOT_SETTINGS: combineStats([g.satellite, { reload: 0 }]),
+                    TYPE: ["satellite", { ANGLE: i * 120, INDEPENDENT: true }],
+                    MAX_CHILDREN: 1,
+                    AUTOFIRE: true,
                     SYNCS_SKILLS: false,
                     WAIT_TO_CYCLE: true,
                     ALPHA: 0
@@ -963,13 +977,13 @@ Class.oroborosTrap = {
                 body.store.snakeSegments = body.store.snakeSegments.filter((x) => !x.isDead())
                 let previous = body;
                 const children = body.store.snakeSegments;
-            
+
                 for (const child of children) {
                     const dx = child.x - previous.x;
                     const dy = child.y - previous.y;
                     const distance = Math.hypot(dx, dy) || 1; // /0 possible ig
                     const factor = (child.size + previous.size) * 1 / distance;
-        
+
                     child.x = previous.x + dx * factor;
                     child.y = previous.y + dy * factor;
                     child.velocity.x = 0; // No natural move!
@@ -1192,11 +1206,11 @@ Class.superSplitterBullet = {
 }
 
 // -Drive projectiles
-Class.autoDrone = makeAuto("drone", "Auto-Drone", {type: "droneAutoTurret"});
-Class.autoSwarm = makeAuto("swarm", "Auto-Swarm Drone", {type: "droneAutoTurret"});
-Class.autoSunchip = makeAuto("sunchip", "Auto-Drone", {type: "droneAutoTurret"});
-Class.autoMinion = makeAuto("minion", "Auto-Minion", {type: "droneAutoTurret"});
-Class.autoTrap = makeAuto("trap", "Auto-Trap", {type: "droneAutoTurret"}); //sorta counts
+Class.autoDrone = makeAuto("drone", "Auto-Drone", { type: "droneAutoTurret" });
+Class.autoSwarm = makeAuto("swarm", "Auto-Swarm Drone", { type: "droneAutoTurret" });
+Class.autoSunchip = makeAuto("sunchip", "Auto-Drone", { type: "droneAutoTurret" });
+Class.autoMinion = makeAuto("minion", "Auto-Minion", { type: "droneAutoTurret" });
+Class.autoTrap = makeAuto("trap", "Auto-Trap", { type: "droneAutoTurret" }); //sorta counts
 
 // 4TDM Score Tanks (optimize this!!!)
 const averageMinionStats = {
@@ -1207,7 +1221,7 @@ const averageMinionStats = {
         SPEED: 1.8,
         ACCELERATION: 0.5
     },
-    AI: {BLIND: true},
+    AI: { BLIND: true },
     CLEAR_ON_MASTER_UPGRADE: true,
     GIVE_KILL_MESSAGE: false,
     CONTROLLERS: [
@@ -1226,7 +1240,7 @@ Class.average4tdmScoreOctoTank = {
     FACING_TYPE: "spin",
     LABEL: "Octo Tank",
     GUNS: weaponArray([
-    // Must be kept like this to preserve visual layering
+        // Must be kept like this to preserve visual layering
         {
             POSITION: {
                 LENGTH: 18,
@@ -1264,8 +1278,8 @@ Class.average4tdmScoreSpike = {
     },
     ...averageMinionStats,
     TURRETS: weaponArray([{
-        TYPE: ["triangleHat_spin", {COLOR: "black"}],
-        POSITION: {SIZE: 18}
+        TYPE: ["triangleHat_spin", { COLOR: "black" }],
+        POSITION: { SIZE: 18 }
     }], 4)
 };
 Class.average4tdmScoreCyclone = {
@@ -1341,7 +1355,7 @@ Class.average4tdmScorePentaShot = {
                 WIDTH: 8,
                 Y: 3,
                 ANGLE: 30,
-                DELAY: 2/3
+                DELAY: 2 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot]),
@@ -1355,7 +1369,7 @@ Class.average4tdmScorePentaShot = {
                 WIDTH: 8,
                 Y: 2,
                 ANGLE: 15,
-                DELAY: 1/3
+                DELAY: 1 / 3
             },
             PROPERTIES: {
                 SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.tripleShot]),
@@ -1427,7 +1441,7 @@ Class.averageL39HuntMegaSmasher = {
     ...averageMinionStats,
     TURRETS: [
         {
-            TYPE: ["hexagonHat_spin", {COLOR: "black"}],
+            TYPE: ["hexagonHat_spin", { COLOR: "black" }],
             POSITION: { SIZE: 25 }
         }
     ]
@@ -1468,8 +1482,8 @@ Class.averageL39HuntSeptaTrapper = {
                 POSITION: {
                     LENGTH: 15,
                     WIDTH: 7,
-                    ANGLE: 360/7,
-                    DELAY: 1/3
+                    ANGLE: 360 / 7,
+                    DELAY: 1 / 3
                 }
             },
             {
@@ -1478,8 +1492,8 @@ Class.averageL39HuntSeptaTrapper = {
                     WIDTH: 7,
                     ASPECT: 1.7,
                     X: 15,
-                    ANGLE: 360/7,
-                    DELAY: 1/3
+                    ANGLE: 360 / 7,
+                    DELAY: 1 / 3
                 },
                 PROPERTIES: {
                     SHOOT_SETTINGS: combineStats([g.trap, g.hexaTrapper]),
@@ -1492,8 +1506,8 @@ Class.averageL39HuntSeptaTrapper = {
                 POSITION: {
                     LENGTH: 15,
                     WIDTH: 7,
-                    ANGLE: 360/7 * 2,
-                    DELAY: 2/3
+                    ANGLE: 360 / 7 * 2,
+                    DELAY: 2 / 3
                 }
             },
             {
@@ -1502,8 +1516,8 @@ Class.averageL39HuntSeptaTrapper = {
                     WIDTH: 7,
                     ASPECT: 1.7,
                     X: 15,
-                    ANGLE: 360/7 * 2,
-                    DELAY: 2/3
+                    ANGLE: 360 / 7 * 2,
+                    DELAY: 2 / 3
                 },
                 PROPERTIES: {
                     SHOOT_SETTINGS: combineStats([g.trap, g.hexaTrapper]),
@@ -1516,7 +1530,7 @@ Class.averageL39HuntSeptaTrapper = {
                 POSITION: {
                     LENGTH: 15,
                     WIDTH: 7,
-                    ANGLE: 360/7 * 3,
+                    ANGLE: 360 / 7 * 3,
                     DELAY: 1
                 }
             },
@@ -1526,7 +1540,7 @@ Class.averageL39HuntSeptaTrapper = {
                     WIDTH: 7,
                     ASPECT: 1.7,
                     X: 15,
-                    ANGLE: 360/7 * 3,
+                    ANGLE: 360 / 7 * 3,
                     DELAY: 1
                 },
                 PROPERTIES: {
@@ -1536,7 +1550,7 @@ Class.averageL39HuntSeptaTrapper = {
                     AUTOFIRE: true
                 }
             }
-        ], {delayOverflow: true})
+        ], { delayOverflow: true })
     ]
 };
 Class.averageL39HuntSurfer = {

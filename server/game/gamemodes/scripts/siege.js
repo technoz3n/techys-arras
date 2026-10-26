@@ -9,7 +9,7 @@ let oldGroups = {
     elites: ["eliteDestroyer", "eliteGunner", "eliteSprayer", "eliteBattleship", "eliteSpawner", "sprayerLegion"],
     deltas: ["deltaDestroyer", "deltaGunner", "deltaSprayer", "deltaBattleship"],
     mysticals: ["summoner", "eliteSkimmer", "nestKeeper", "roguePalisade"],
-    celestials: ["paladin", "freyja", "zaphkiel", "nyx", "theia"],
+    celestials: ["paladin", "freyja", "zaphkiel", "nyx", "theia", "zeus"],
     eternals: ["legionaryCrasher", "kronos", "odin"]
 };
 

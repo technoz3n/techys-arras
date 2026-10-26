@@ -1285,74 +1285,74 @@ exports.makePolygon = (options = {}) => {
     }
 }
 
-class LayeredBoss {
-    constructor(identifier, NAME, PARENT = "celestial", SHAPE = 9, COLOR = 0, trapTurretType = "baseTrapTurret", trapTurretSize = 6.5, layerScale = 5, noSizeAn = false, BODY, SIZE, VALUE) {
-        this.identifier = identifier ?? NAME.charAt(0).toLowerCase() + NAME.slice(1);
-        this.layerID = 0;
-        Class[this.identifier] = {
-            PARENT, SHAPE, NAME, COLOR, BODY, SIZE, VALUE,
-            UPGRADE_LABEL: NAME,
-            UPGRADE_COLOR: COLOR,
-            NO_SIZE_ANIMATION: noSizeAn,
-            TURRETS: Array(SHAPE).fill().map((_, i) => ({
-                TYPE: trapTurretType,
-                POSITION: {
-                    SIZE: trapTurretSize,
-                    X: 9,
-                    ANGLE: 360 / SHAPE * (i + 0.5),
-                    ARC: 180
+    class LayeredBoss {
+        constructor(identifier, NAME, PARENT = "celestial", SHAPE = 9, COLOR = 0, trapTurretType = "baseTrapTurret", trapTurretSize = 6.5, layerScale = 5, noSizeAn = false, BODY, SIZE, VALUE) {
+            this.identifier = identifier ?? NAME.charAt(0).toLowerCase() + NAME.slice(1);
+            this.layerID = 0;
+            Class[this.identifier] = {
+                PARENT, SHAPE, NAME, COLOR, BODY, SIZE, VALUE,
+                UPGRADE_LABEL: NAME,
+                UPGRADE_COLOR: COLOR,
+                NO_SIZE_ANIMATION: noSizeAn,
+                TURRETS: Array(SHAPE).fill().map((_, i) => ({
+                    TYPE: trapTurretType,
+                    POSITION: {
+                        SIZE: trapTurretSize,
+                        X: 9,
+                        ANGLE: 360 / SHAPE * (i + 0.5),
+                        ARC: 180
+                    }
+                }))
+            };
+            this.layerScale = layerScale;
+            this.shape = SHAPE;
+            this.layerSize = 20;
+        }
+
+        addLayer({gun, turret}, decreaseSides = true, layerScale, MAX_CHILDREN) {
+            this.layerID++;
+            this.shape -= decreaseSides ? 2 : 0;
+            this.layerSize -= layerScale ?? this.layerScale;
+            let layer = {
+                PARENT: "genericTank",
+                LABEL: "",
+                SHAPE: this.shape,
+                COLOR: -1,
+                INDEPENDENT: true,
+                FACING_TYPE: ["spin", { speed: 0.1 / 1.5 * (this.layerID % 2 ? -1 : 1) }],
+                MAX_CHILDREN, 
+                GUNS: [],
+                TURRETS: []
+            };
+            if (gun) {
+                for (let i = 0; i < this.shape; i++) {
+                    layer.GUNS.push({
+                        POSITION: gun.POSITION.map(n => n ?? 360 / this.shape * (i + 0.5)),
+                        PROPERTIES: gun.PROPERTIES
+                    });
                 }
-            }))
-        };
-        this.layerScale = layerScale;
-        this.shape = SHAPE;
-        this.layerSize = 20;
-    }
+            }
+            if (turret) {
+                for (let i = 0; i < this.shape; i++) {
+                    layer.TURRETS.push({
+                        POSITION: turret.POSITION.map(n => n ?? 360 / this.shape * (i + 0.5)),
+                        TYPE: turret.TYPE
+                    });
+                }
+            }
 
-    addLayer({gun, turret}, decreaseSides = true, layerScale, MAX_CHILDREN) {
-        this.layerID++;
-        this.shape -= decreaseSides ? 2 : 0;
-        this.layerSize -= layerScale ?? this.layerScale;
-        let layer = {
-            PARENT: "genericTank",
-            LABEL: "",
-            SHAPE: this.shape,
-            COLOR: -1,
-            INDEPENDENT: true,
-            FACING_TYPE: ["spin", { speed: 0.1 / 1.5 * (this.layerID % 2 ? -1 : 1) }],
-            MAX_CHILDREN, 
-            GUNS: [],
-            TURRETS: []
-        };
-        if (gun) {
-            for (let i = 0; i < this.shape; i++) {
-                layer.GUNS.push({
-                    POSITION: gun.POSITION.map(n => n ?? 360 / this.shape * (i + 0.5)),
-                    PROPERTIES: gun.PROPERTIES
-                });
-            }
+            Class[this.identifier + "Layer" + this.layerID] = layer;
+            Class[this.identifier].TURRETS.push({
+                TYPE: this.identifier + "Layer" + this.layerID,
+                POSITION: {
+                    SIZE: this.layerSize,
+                    ARC: 360,
+                    LAYER: 1
+                }
+            });
         }
-        if (turret) {
-            for (let i = 0; i < this.shape; i++) {
-                layer.TURRETS.push({
-                    POSITION: turret.POSITION.map(n => n ?? 360 / this.shape * (i + 0.5)),
-                    TYPE: turret.TYPE
-                });
-            }
-        }
-
-        Class[this.identifier + "Layer" + this.layerID] = layer;
-        Class[this.identifier].TURRETS.push({
-            TYPE: this.identifier + "Layer" + this.layerID,
-            POSITION: {
-                SIZE: this.layerSize,
-                ARC: 360,
-                LAYER: 1
-            }
-        });
     }
-}
-exports.LayeredBoss = LayeredBoss;
+    exports.LayeredBoss = LayeredBoss;
 
 // Food facilitators
 exports.makeRelic = (type, scale = 1, gem, SIZE, yBase = 8.25) => {
