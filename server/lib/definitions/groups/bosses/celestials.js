@@ -415,3 +415,14 @@ napoleon.addLayer({turret: {
     POSITION: [10.5, 8, 0, null, 160, 0],
     TYPE: "napoleonUpperTurret"
 }}, true, 6);
+
+// continiue greek celestials
+let zeus = new LayeredBoss(null, "Zeus", "celestial", 9, "#FFE066", "baseTrapTurret", 6.5, 5.5);
+zeus.addLayer({turret: {
+    POSITION: [8.5, 9, 0, null, 180, 0],
+    TYPE: ["rangerTurret", {GUN_STAT_SCALE: {health: 1.3, damage: 1.3, speed: 1.2, maxSpeed: 0.9}}]
+}});
+zeus.addLayer({turret: {
+    POSITION: [10.5, 8, 0, null, 160, 0],
+    TYPE: ["annihilatorTurret", {GUN_STAT_SCALE: {health: 1.4, damage: 1.4, speed: 1.2, maxSpeed: 0.75}}]
+}}, true, 6);
