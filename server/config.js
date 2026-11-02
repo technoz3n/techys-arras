@@ -55,22 +55,7 @@ module.exports = {
             private: false,
 
             properties: {
-                bot_cap: 20,
-                daily_tank: {
-                    tank: "whirlwind",
-                    tier: 3,
-                    ads: true,
-                    ad_sources: [
-                        {
-                            file: "example_video_ad.mp4",
-                            use_regular_ad_size: true
-                        },
-                        {
-                            file: "example_image_ad.png",
-                            use_regular_ad_size: true
-                        }
-                    ]
-                }
+                bot_cap: 20
             }
         },
         {
@@ -129,28 +114,6 @@ module.exports = {
         },
         {
             share_client_server: false,
-            host: "localhost:3004",
-            port: 3004,
-            id: "ld",
-
-            region: "Local",
-            serverhost: "Local",
-            location: "Localhost",
-            gamemode: ["mothership"],
-            player_cap: 80,
-
-            featured: false,
-            unlisted: false,
-            private: false,
-
-            properties: {
-                mothership_time_limit: 30_000,
-                teams: 3,
-                bot_cap: 30
-            }
-        },
-        {
-            share_client_server: false,
             host: "localhost:3099",
             port: 3099,
             id: "lz",
@@ -176,7 +139,7 @@ module.exports = {
             region: "Local",
             serverhost: "Local",
             location: "Localhost",
-            gamemode: ["siege_classic"],
+            gamemode: ["siege_fortress"],
             player_cap: 80,
 
             featured: false,
