@@ -298,7 +298,7 @@ Class.menu_diepBosses = makeMenu("Diep Bosses Menu", {
         //"guardian",
         "fallenBooster",
         //"fallenOverlord"
-    ].map(x => x + "_diep")
+    ]
 });
 Class.menu_devBosses = makeMenu("Dev Bosses Menu", {
     color: "lime",

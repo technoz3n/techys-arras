@@ -1,6 +1,6 @@
-const { makeMenu, combineStats } = require("../../facilitators.js")
+const { makeMenu, combineStats, weaponMirror } = require("../../facilitators.js")
 const { base } = require("../../constants.js")
-const { g } = require("../../gunvals.js")
+const g  = require("../../gunvals.js")
 
 Class.ramMiniboss = {
     PARENT: "genericBoss",
@@ -13,14 +13,15 @@ Class.fallenBooster = {
     UPGRADE_COLOR: "gray",
     SIZE: 26,
     BODY: {
-        SPEED: 1.5,
-        HEALTH: 30,
+        SPEED: 5,
+        HEALTH: base.HEALTH * 3,
         DAMAGE: 3,
         REGEN: 5,
         FOV: 1.4,
         DENSITY: 6
     },
     CONTROLLERS: ["nearestDifferentMaster", "mapTargetToGoal"],
+    FACING_TYPE: ["toTarget"],
     GUNS: [
         {
             POSITION: {
