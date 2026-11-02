@@ -280,8 +280,14 @@ Class.fallenOverlord = {
     DANGER: 8,
     COLOR: "gray",
     UPGRADE_COLOR: "gray",
-    SIZE: 26,
+    SIZE: 22,
     MAX_CHILDREN: 12,
+     BODY: {
+        FOV: 0.5,
+        SPEED: 0.09 * base.SPEED,
+        HEALTH: 10 * base.HEALTH,
+        DAMAGE: 3 * base.DAMAGE
+    },
     GUNS: weaponArray({
         POSITION: {
             LENGTH: 6,
@@ -294,7 +300,7 @@ Class.fallenOverlord = {
                 g.drone,
                 g.overseer,
                 {
-                    reload: 1 / 0.36,
+                    reload: 0.36,
                     speed: 1.7,
                     damage: 0.56,
                     health: 12.5,

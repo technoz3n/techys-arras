@@ -11,7 +11,7 @@ Class.fallenBooster = {
     LABEL: "Fallen Booster",
     COLOR: "gray",
     UPGRADE_COLOR: "gray",
-    SIZE: 26,
+    SIZE: 22,
     BODY: {
         SPEED: 5,
         HEALTH: base.HEALTH * 3,

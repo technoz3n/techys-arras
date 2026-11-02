@@ -297,7 +297,7 @@ Class.menu_diepBosses = makeMenu("Diep Bosses Menu", {
         //"defender",
         //"guardian",
         "fallenBooster",
-        //"fallenOverlord"
+        "fallenOverlord"
     ]
 });
 Class.menu_devBosses = makeMenu("Dev Bosses Menu", {
