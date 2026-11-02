@@ -10,7 +10,8 @@ let oldGroups = {
     deltas: ["deltaDestroyer", "deltaGunner", "deltaSprayer", "deltaBattleship"],
     mysticals: ["summoner", "eliteSkimmer", "nestKeeper", "roguePalisade"],
     celestials: ["paladin", "freyja", "zaphkiel", "nyx", "theia", "zeus", "poseidon"],
-    eternals: ["legionaryCrasher", "kronos", "odin"]
+    eternals: ["legionaryCrasher", "kronos", "odin"],
+    diepBosses: ["fallenBooster"]
 };
 
 class Siege {
@@ -22,11 +23,11 @@ class Siege {
             ran.chooseN(oldGroups.elites, 3),
             ran.chooseN(oldGroups.elites, 4),
             ran.chooseN(oldGroups.elites, 3).concat(ran.chooseN(oldGroups.mysticals, 1)),
-            ran.chooseN(oldGroups.elites, 2).concat(ran.chooseN(oldGroups.mysticals, 2)),
+            ran.chooseN(oldGroups.elites, 2).concat(ran.chooseN(oldGroups.mysticals, 2)).concat(ran.chooseN(oldGroups.diepBosses, 1)),
             ran.chooseN(oldGroups.elites, 1).concat(ran.chooseN(oldGroups.mysticals, 3)),
             ran.chooseN(oldGroups.mysticals, 4),
             ran.chooseN(oldGroups.elites, 1).concat(ran.chooseN(oldGroups.mysticals, 4)),
-            ran.chooseN(oldGroups.elites, 2).concat(ran.chooseN(oldGroups.mysticals, 4)),
+            ran.chooseN(oldGroups.elites, 2).concat(ran.chooseN(oldGroups.mysticals, 4)).concat(ran.chooseN(oldGroups.diepBosses, 1)),
             ran.chooseN(oldGroups.elites, 3).concat(ran.chooseN(oldGroups.mysticals, 4)),
             ran.chooseN(oldGroups.elites, 4).concat(ran.chooseN(oldGroups.mysticals, 4)),
             [oldGroups.celestials[0]],
@@ -34,6 +35,13 @@ class Siege {
             [oldGroups.celestials[2]],
             [oldGroups.celestials[3]],
             [oldGroups.celestials[4]],
+            
+            [oldGroups.diepBosses[0]],
+            [oldGroups.diepBosses[1]],
+            [oldGroups.diepBosses[2]],
+            [oldGroups.diepBosses[3]],
+            [oldGroups.diepBosses[4]],
+            
             ran.chooseN(oldGroups.elites, 1).concat(ran.chooseN(oldGroups.mysticals, 1)).concat(ran.chooseN(oldGroups.celestials, 1)),
             ran.chooseN(oldGroups.elites, 3).concat(ran.chooseN(oldGroups.mysticals, 1)).concat(ran.chooseN(oldGroups.celestials, 1)),
             ran.chooseN(oldGroups.elites, 3).concat(ran.chooseN(oldGroups.mysticals, 3)).concat(ran.chooseN(oldGroups.celestials, 1)),
@@ -49,7 +57,7 @@ class Siege {
             ran.chooseN(oldGroups.elites, 2).concat(ran.chooseN(oldGroups.mysticals, 2)).concat(ran.chooseN(oldGroups.celestials, 4)),
             ran.chooseN(oldGroups.elites, 4).concat(ran.chooseN(oldGroups.mysticals, 4)).concat(ran.chooseN(oldGroups.celestials, 4)),
             ran.chooseN(oldGroups.celestials, 5),
-            ran.chooseN(oldGroups.elites, 4).concat(ran.chooseN(oldGroups.mysticals, 4)).concat(ran.chooseN(oldGroups.celestials, 5)),
+            ran.chooseN(oldGroups.elites, 4).concat(ran.chooseN(oldGroups.mysticals, 4)).concat(ran.chooseN(oldGroups.celestials, 5)).concat(ran.chooseN(oldGroups.diepBosses, 1)),
             ran.chooseN(oldGroups.eternals, 1)
         ];
         this.bossChoices = [
@@ -77,7 +85,10 @@ class Siege {
             [4, "nestKeeper"],
             [4, "nestWarden"],
             [4, "nestGuardian"],
-
+            
+            // diep bosses
+            [15, "fallenBooster"],
+        
             //terrestrials
             [25, "ares"],
             [25, "gersemi"],

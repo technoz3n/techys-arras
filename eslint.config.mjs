@@ -12,22 +12,25 @@ export default defineConfig([
         },
         extends: ["js/recommended"],
         languageOptions: {
-            globals: globals.browser
+            globals: {
+                ...globals.browser,
+                ...globals.node
+            }
         },
         rules: {
             "curly": ["error", "multi-line"],
             "no-unreachable": ["error"],
             "@stylistic/array-bracket-spacing": ["error", "never"],
             "@stylistic/arrow-spacing": ["error", {
-                "before": true,
-                "after": true
+                before: true,
+                after: true
             }],
             "@stylistic/block-spacing": ["error", "always"],
             "@stylistic/brace-style": ["error", "1tbs"],
             "@stylistic/comma-dangle": ["error", "never"],
             "@stylistic/comma-spacing": ["error", {
-                "before": false,
-                "after": true
+                before: false,
+                after: true
             }],
             "@stylistic/comma-style": ["error", "last"],
             "@stylistic/indent": ["error", 4],

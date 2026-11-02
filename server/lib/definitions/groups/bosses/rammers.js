@@ -1,11 +1,67 @@
-const {makeMenu} = require("../../facilitators.js")
-const {base} = require("../../constants.js")
+const { makeMenu } = require("../../facilitators.js")
+const { base } = require("../../constants.js")
 
 Class.ramMiniboss = {
     PARENT: "genericBoss",
     CONTROLLERS: ["nearestDifferentMaster", "canRepel", "mapTargetToGoal"]
 }
-
+Class.fallenBooster = {
+    PARENT: "ramMiniboss",
+    LABEL: "Fallen Booster",
+    COLOR: "gray",
+    UPGRADE_COLOR: "gray",
+    SIZE: 26,
+    BODY: {
+        SPEED: 1.5,
+        HEALTH: 30,
+        DAMAGE: 3,
+        REGEN: 5,
+        FOV: 1.4,
+        DENSITY: 6
+    },
+    CONTROLLERS: ["nearestDifferentMaster", "mapTargetToGoal"],
+    GUNS: [
+        {
+            POSITION: {
+                LENGTH: 18,
+                WIDTH: 8
+            },
+            PROPERTIES: {
+                SHOOT_SETTINGS: combineStats([g.basic, g.flankGuard, g.triAngle, g.triAngleFront, { recoil: 4 }]),
+                TYPE: "bullet",
+                LABEL: "Front"
+            }
+        },
+        ...weaponMirror([
+            {
+                POSITION: {
+                    LENGTH: 14,
+                    WIDTH: 8,
+                    ANGLE: 135,
+                    DELAY: 0.6
+                },
+                PROPERTIES: {
+                    SHOOT_SETTINGS: combineStats([g.basic, g.flankGuard, g.triAngle, g.thruster]),
+                    TYPE: "bullet",
+                    LABEL: "Thruster"
+                }
+            },
+            {
+                POSITION: {
+                    LENGTH: 16,
+                    WIDTH: 8,
+                    ANGLE: 150,
+                    DELAY: 0.1
+                },
+                PROPERTIES: {
+                    SHOOT_SETTINGS: combineStats([g.basic, g.flankGuard, g.triAngle, g.thruster]),
+                    TYPE: "bullet",
+                    LABEL: "Thruster"
+                }
+            }
+        ])
+    ]
+}
 Class.bob = {
     PARENT: "ramMiniboss",
     LABEL: "Bob",
