@@ -13,9 +13,9 @@ Class.fallenBooster = {
     UPGRADE_COLOR: "gray",
     SIZE: 22,
     BODY: {
-        SPEED: 5,
-        HEALTH: base.HEALTH * 3,
-        DAMAGE: 3,
+        SPEED: 3 * base.SPEED,
+        HEALTH: base.HEALTH * 10,
+        DAMAGE: 3 * base.DAMAGE,
         REGEN: 5,
         FOV: 1.4,
         DENSITY: 6

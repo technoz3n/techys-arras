@@ -284,7 +284,7 @@ Class.fallenOverlord = {
     MAX_CHILDREN: 12,
      BODY: {
         FOV: 0.5,
-        SPEED: 0.09 * base.SPEED,
+        SPEED: 0.12 * base.SPEED,
         HEALTH: 10 * base.HEALTH,
         DAMAGE: 3 * base.DAMAGE
     },
