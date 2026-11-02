@@ -296,7 +296,7 @@ Class.menu_diepBosses = makeMenu("Diep Bosses Menu", {
     upgrades: [
         //"defender",
         //"guardian",
-        //"fallenBooster",
+        "fallenBooster",
         //"fallenOverlord"
     ].map(x => x + "_diep")
 });
