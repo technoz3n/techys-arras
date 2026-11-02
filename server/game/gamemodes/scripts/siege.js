@@ -11,7 +11,7 @@ let oldGroups = {
     mysticals: ["summoner", "eliteSkimmer", "nestKeeper", "roguePalisade"],
     celestials: ["paladin", "freyja", "zaphkiel", "nyx", "theia", "zeus", "poseidon"],
     eternals: ["legionaryCrasher", "kronos", "odin"],
-    diepBosses: ["fallenBooster"]
+    diepBosses: ["fallenBooster", "fallenOverlord"]
 };
 
 class Siege {

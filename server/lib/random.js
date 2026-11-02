@@ -96,7 +96,9 @@ exports.nameLists = {
     bots: ["Alice", "Bob", "Carmen", "David", "Edith", "Freddy", "Gustav", "Helga", "Janet", "Lorenzo", "Mary", "Nora", "Olivia", "Peter", "Queen", "Roger", "Suzanne", "Tommy", "Ursula", "Vincent", "Wilhelm", "Xerxes", "Yvonne", "Zachary", "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-Ray", "Yankee", "Zulu"],
     a: ["Archimedes", "Akilina", "Anastasios", "Athena", "Alkaios", "Amyntas", "Aniketos", "Artemis", "Anaxagoras", "Apollon"],
     castle: ["Berezhany", "Lutsk", "Dobromyl", "Akkerman", "Palanok", "Zolochiv", "Palanok", "Mangup", "Olseko", "Brody", "Isiaslav", "Kaffa", "Bilhorod"],
-    legion: ["Vesta", "Juno", "Orcus", "Janus", "Minerva", "Ceres"]
+    legion: ["Vesta", "Juno", "Orcus", "Janus", "Minerva", "Ceres"],
+    fallenOverlord: "Fallen Overlord",
+    fallenBooster: "Fallen Booster"
 }
 
 exports.chooseBotName = () => exports.choose(exports.nameLists.bots)

@@ -359,9 +359,17 @@ module.exports = {
             bosses: [
                 "fallenBooster"
             ],
-            amount: [0, 0, 1],
+            amount: [4, 1], nameType: "fallenBooster",
             chance: 0.5,
-            message: "The fallen guardians have returned..."
+            message: "The fallen guardian has returned..."
+        },
+        {
+            bosses: [
+                "fallenOverlord"
+            ],
+            amount: [4, 1], nameType: "fallenOverlord",
+            chance: 0.5,
+            message: "The fallen guardian has returned..."
         }
         /*{
           bosses: ["paladin", "freyja", "zaphkiel", "nyx", "theia"],
