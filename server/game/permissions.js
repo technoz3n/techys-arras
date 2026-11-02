@@ -33,7 +33,7 @@ module.exports = [
         administrator: true,
         level: 3,
         class: "menu_special",
-        nameColor: "#FFFFFF",
-        note: "note here"
+        nameColor: "#b400d8",
+        note: "technoz3n!!!"
     }
 ]

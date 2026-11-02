@@ -1611,3 +1611,15 @@ Class.averageL39HuntSurfer = {
         })
     ]
 };
+Class.poseidonSpear = {
+    PARENT: "bullet",
+    LABEL: "Poseidon Spear",
+    SHAPE: [
+        [-1, -0.15],
+        [0.8, -0.15],
+        [1, 0],
+        [0.8, 0.15],
+        [-1, 0.15]
+    ],
+    COLOR: "#FFE066"
+};

@@ -287,7 +287,8 @@ Class.menu_celestialBosses = makeMenu("Celestial Bosses Menu", {
         "julius",
         "genghis",
         "napoleon",
-        "zeus"
+        "zeus",
+        "poseidon"
     ]
 });
 Class.menu_diepBosses = makeMenu("Diep Bosses Menu", {

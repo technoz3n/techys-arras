@@ -11,18 +11,18 @@ import * as socketStuff from "./socketinit.js";
     let { socketInit, resync, gui, leaderboard, minimap, moveCompensation, lag, getNow } = socketStuff;
     // Get the changelog
     fetch("CHANGELOG.md", { cache: "no-cache" }).then(response => response.text()).then(response => {
-      let b = [];
-      var c = [];
-      for (let d of response.split("\n"))
-        0 !== d.length &&
-          ((response = d.charAt(0)),
-          "#" === response
-            ? (b.push(c), (c = [d.slice(1).trim()]))
-            : "-" === response
-            ? c.push(d.slice(1).trim())
-            : (c[c.length - 1] += " " + d.trim()))
+        let b = [];
+        var c = [];
+        for (let d of response.split("\n"))
+            0 !== d.length &&
+                ((response = d.charAt(0)),
+                    "#" === response
+                        ? (b.push(c), (c = [d.slice(1).trim()]))
+                        : "-" === response
+                            ? c.push(d.slice(1).trim())
+                            : (c[c.length - 1] += " " + d.trim()))
         b.push(c);
-        for (c = 0; c < b.length; ) {
+        for (c = 0; c < b.length;) {
             if (addChangelog(b[c], 157248e5)) {
                 c++;
                 continue;
@@ -234,7 +234,7 @@ import * as socketStuff from "./socketinit.js";
                 }
                 // Addon info handler
                 let keyValue = localStorage.getItem("playerKeyInputValue");
-                (async function() {
+                (async function () {
                     let A_response = await fetch(`/api/getAddonAuthors?token=${keyValue}`);
                     let A_data = await A_response.json().catch(() => false);
                     if (A_data && Array.isArray(A_data)) initalizeAddonAuthors(A_data);
@@ -563,158 +563,158 @@ import * as socketStuff from "./socketinit.js";
         for (let e of document.getElementById("optColors").children) {
             if (e.value === "custom") customPlate = e;
         }
-        let {name, author} = getThemeDisplayName(themeValue);
+        let { name, author } = getThemeDisplayName(themeValue);
         if (name !== null && author !== null) customPlate.textContent = `Custom - ${name} ${author}`;
         themeValue.addEventListener("input", () => {
-            let {name, author} = getThemeDisplayName(themeValue);
+            let { name, author } = getThemeDisplayName(themeValue);
             if (name !== null && author !== null) customPlate.textContent = `Custom - ${name} ${author}`; else customPlate.textContent = "Custom - Unable to pull name or author.";
         });
     }
 
     function snowAndFireworkEffects() {
         let currentDate = new Date(),
-        snowAmount = global.mobile
-        ? 0
-        : Math.max(
-            0,
-            1 -
-                Math.abs(
-                currentDate.getTime() -
-                    new Date(currentDate.getFullYear() - (6 > currentDate.getMonth() ? 1 : 0), 11, 25)
-                ) / 20736e5
-            );
+            snowAmount = global.mobile
+                ? 0
+                : Math.max(
+                    0,
+                    1 -
+                    Math.abs(
+                        currentDate.getTime() -
+                        new Date(currentDate.getFullYear() - (6 > currentDate.getMonth() ? 1 : 0), 11, 25)
+                    ) / 20736e5
+                );
         if (snowAmount) {
             let snowCanvas = document.createElement("canvas");
             snowCanvas.style.position = "absolute";
             snowCanvas.style.top = "0";
             document.body.insertBefore(snowCanvas, document.body.firstChild);
             let b = snowCanvas.getContext("2d"),
-            snows = [],
-            updateSnow = () => {
-                snowCanvas.width !== window.innerWidth && (snowCanvas.width = window.innerWidth);
-                snowCanvas.height !== window.innerHeight && (snowCanvas.height = window.innerHeight);
-                b.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
-                b.fillStyle = "#FFFFFF";
-                for (let snow of snows) {
-                snow.x += 5 / snow.speed + Math.random();
-                snow.y += 12.5 / snow.speed + Math.random();
-                let fade = 2 * Math.min(0.4, 1 - snow.y / snowCanvas.height);
-                0 < fade
-                    ? ((b.globalAlpha = fade),
-                    b.beginPath(),
-                    b.arc(snow.x, snow.y, snow.speed, 0, 2 * Math.PI),
-                    b.fill())
-                    : (snow.vanished = true);
-                }
-                0.001 * snowCanvas.width * snowAmount > Math.random() &&
-                snows.push({
-                    x: snowCanvas.width * (1.5 * Math.random() - 0.5),
-                    y: -50 - 100 * Math.random(),
-                    speed: 2 + Math.random() * Math.random() * 7,
-                });
-                if (global.gameStart) snowCanvas.remove();
-                else requestAnimationFrame(updateSnow);
-            };
+                snows = [],
+                updateSnow = () => {
+                    snowCanvas.width !== window.innerWidth && (snowCanvas.width = window.innerWidth);
+                    snowCanvas.height !== window.innerHeight && (snowCanvas.height = window.innerHeight);
+                    b.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+                    b.fillStyle = "#FFFFFF";
+                    for (let snow of snows) {
+                        snow.x += 5 / snow.speed + Math.random();
+                        snow.y += 12.5 / snow.speed + Math.random();
+                        let fade = 2 * Math.min(0.4, 1 - snow.y / snowCanvas.height);
+                        0 < fade
+                            ? ((b.globalAlpha = fade),
+                                b.beginPath(),
+                                b.arc(snow.x, snow.y, snow.speed, 0, 2 * Math.PI),
+                                b.fill())
+                            : (snow.vanished = true);
+                    }
+                    0.001 * snowCanvas.width * snowAmount > Math.random() &&
+                        snows.push({
+                            x: snowCanvas.width * (1.5 * Math.random() - 0.5),
+                            y: -50 - 100 * Math.random(),
+                            speed: 2 + Math.random() * Math.random() * 7,
+                        });
+                    if (global.gameStart) snowCanvas.remove();
+                    else requestAnimationFrame(updateSnow);
+                };
             setInterval(() => {
                 snows = snows.filter((g) => !g.vanished);
             }, 2e3);
             updateSnow();
         }
         // Firework event for new year
-            let Gd = "en-US" === navigator.language && -7 <= global.timezoneLocation && -4 >= global.timezoneLocation,
+        let Gd = "en-US" === navigator.language && -7 <= global.timezoneLocation && -4 >= global.timezoneLocation,
             Hd = 6 === currentDate.getMonth() && 4 === currentDate.getDate(),
             Id =
-            (11 === currentDate.getMonth() && 31 === currentDate.getDate()) ||
-            (0 === currentDate.getMonth() && 3 >= currentDate.getDate());
+                (11 === currentDate.getMonth() && 31 === currentDate.getDate()) ||
+                (0 === currentDate.getMonth() && 3 >= currentDate.getDate());
         if (!global.mobile && ((Hd && Gd) || Id)) {
             let fireworkCanvas = document.createElement("canvas");
             fireworkCanvas.style.position = "absolute";
             fireworkCanvas.style.top = "0";
             document.body.insertBefore(fireworkCanvas, document.body.firstChild);
             let b = fireworkCanvas.getContext("2d"),
-            d = () => {
-                let k =
-                "164,14,14 230,80,0 230,119,0 47,127,51 23,78,166 123,31,163".split(
-                    " "
-                );
-                return k[Math.floor(Math.random() * k.length)];
-            },
-            fireworks = [],
-            updateFireworks = () => {
-                if (fireworkCanvas.width !== window.innerWidth || fireworkCanvas.height !== window.innerHeight)
-                (fireworkCanvas.width = window.innerWidth),
-                    (fireworkCanvas.height = window.innerHeight),
-                    (fireworks = []),
-                    b.clearRect(0, 0, fireworkCanvas.width, fireworkCanvas.height),
-                    (b.fillStyle = "rgba(255,255,255,0.01)"),
-                    b.fillRect(0, 0, fireworkCanvas.width, fireworkCanvas.height),
-                    (b.lineWidth = 2.5),
-                    (b.lineCap = "round");
-                b.globalCompositeOperation = "destination-out";
-                b.fillStyle = "rgba(0,0,0,0.15)";
-                b.fillRect(0, 0, fireworkCanvas.width, fireworkCanvas.height);
-                b.globalCompositeOperation = "lighter";
-                for (var firework of fireworks) {
-                    var l = firework.x,
-                        t = firework.y;
-                    firework.H += 0.2;
-                    firework.x += firework.M;
-                    firework.y += firework.H;
-                    firework.H *= 0.99;
-                    firework.M *= 0.99;
-                    firework.time--;
-                    var f = 0 < firework.time ? (firework.Oa ? 1 : 10 <= firework.time ? 1 : firework.time / 10) : 0;
-                    if (0 < f) {
-                        b.strokeStyle = `rgba(${firework.color},${f})`;
-                        b.beginPath();
-                        b.moveTo(l, t);
-                        b.lineTo(firework.x, firework.y);
-                        b.stroke();
-                    } else {
-                        if (firework.Oa && !firework.vanished) {
-                            l = Math.floor(5 * Math.random()) + 30;
-                            t = 0.5 * Math.random() + 3;
-                            f = 25 + 5 * Math.random();
-                            for (var h = 0; 2 > h; h++) {
-                                let p = d();
-                                for (let r = 0; r < l; r++) {
-                                let v = ((r + Math.random()) / l) * Math.PI * 2,
-                                    P = t + 0.5 * Math.random();
-                                fireworks.push({
-                                    color: p,
-                                    x: firework.x,
-                                    y: firework.y,
-                                    M: Math.cos(v) * P,
-                                    H: -0.8 + Math.sin(v) * P,
-                                    time: f + 2 * Math.random(),
-                                    Oa: false,
-                                    vanished: false,
-                                });
+                d = () => {
+                    let k =
+                        "164,14,14 230,80,0 230,119,0 47,127,51 23,78,166 123,31,163".split(
+                            " "
+                        );
+                    return k[Math.floor(Math.random() * k.length)];
+                },
+                fireworks = [],
+                updateFireworks = () => {
+                    if (fireworkCanvas.width !== window.innerWidth || fireworkCanvas.height !== window.innerHeight)
+                        (fireworkCanvas.width = window.innerWidth),
+                            (fireworkCanvas.height = window.innerHeight),
+                            (fireworks = []),
+                            b.clearRect(0, 0, fireworkCanvas.width, fireworkCanvas.height),
+                            (b.fillStyle = "rgba(255,255,255,0.01)"),
+                            b.fillRect(0, 0, fireworkCanvas.width, fireworkCanvas.height),
+                            (b.lineWidth = 2.5),
+                            (b.lineCap = "round");
+                    b.globalCompositeOperation = "destination-out";
+                    b.fillStyle = "rgba(0,0,0,0.15)";
+                    b.fillRect(0, 0, fireworkCanvas.width, fireworkCanvas.height);
+                    b.globalCompositeOperation = "lighter";
+                    for (var firework of fireworks) {
+                        var l = firework.x,
+                            t = firework.y;
+                        firework.H += 0.2;
+                        firework.x += firework.M;
+                        firework.y += firework.H;
+                        firework.H *= 0.99;
+                        firework.M *= 0.99;
+                        firework.time--;
+                        var f = 0 < firework.time ? (firework.Oa ? 1 : 10 <= firework.time ? 1 : firework.time / 10) : 0;
+                        if (0 < f) {
+                            b.strokeStyle = `rgba(${firework.color},${f})`;
+                            b.beginPath();
+                            b.moveTo(l, t);
+                            b.lineTo(firework.x, firework.y);
+                            b.stroke();
+                        } else {
+                            if (firework.Oa && !firework.vanished) {
+                                l = Math.floor(5 * Math.random()) + 30;
+                                t = 0.5 * Math.random() + 3;
+                                f = 25 + 5 * Math.random();
+                                for (var h = 0; 2 > h; h++) {
+                                    let p = d();
+                                    for (let r = 0; r < l; r++) {
+                                        let v = ((r + Math.random()) / l) * Math.PI * 2,
+                                            P = t + 0.5 * Math.random();
+                                        fireworks.push({
+                                            color: p,
+                                            x: firework.x,
+                                            y: firework.y,
+                                            M: Math.cos(v) * P,
+                                            H: -0.8 + Math.sin(v) * P,
+                                            time: f + 2 * Math.random(),
+                                            Oa: false,
+                                            vanished: false,
+                                        });
+                                    }
                                 }
                             }
+                            firework.vanished = true;
                         }
-                        firework.vanished = true;
                     }
-                }
-                3e-5 * fireworkCanvas.width > Math.random() &&
-                ((firework = fireworkCanvas.width * Math.random()),
-                (l = fireworkCanvas.height - 10),
-                (t = 4 * Math.random() - 2),
-                (f = 5 * Math.random() - 15),
-                (h = 30 + 10 * Math.random()),
-                fireworks.push({
-                    color: d(),
-                    x: firework,
-                    y: l,
-                    M: t,
-                    H: f,
-                    time: h,
-                    Oa: true,
-                    vanished: false,
-                }));
-                if (global.gameStart) a.remove();
-                else requestAnimationFrame(updateFireworks);
-            };
+                    3e-5 * fireworkCanvas.width > Math.random() &&
+                        ((firework = fireworkCanvas.width * Math.random()),
+                            (l = fireworkCanvas.height - 10),
+                            (t = 4 * Math.random() - 2),
+                            (f = 5 * Math.random() - 15),
+                            (h = 30 + 10 * Math.random()),
+                            fireworks.push({
+                                color: d(),
+                                x: firework,
+                                y: l,
+                                M: t,
+                                H: f,
+                                time: h,
+                                Oa: true,
+                                vanished: false,
+                            }));
+                    if (global.gameStart) a.remove();
+                    else requestAnimationFrame(updateFireworks);
+                };
             setInterval(() => {
                 fireworks = fireworks.filter((k) => !k.vanished);
             }, 2e3);
@@ -821,11 +821,11 @@ import * as socketStuff from "./socketinit.js";
     let CalcScreenSize = () => Math.max(global.vscreenSize, (16 / 9) * global.vscreenSizey) / global.player.renderv,
         handleScreenDistance = (alpha, instance, fade = true) => {
             let indexes = instance.index.split("-"),
-            m = global.mockups[parseInt(indexes[0])] ?? global.missingno[0];
+                m = global.mockups[parseInt(indexes[0])] ?? global.missingno[0];
             switch (fade) {
                 case true:
                     GetScreenDistance(instance.render.x - global.player.loc.x, instance.render.y - global.player.loc.y, instance.size) ||
-                    (alpha *= GetScreenDistanceF(instance.render.x - global.player.loc.x, instance.size));
+                        (alpha *= GetScreenDistanceF(instance.render.x - global.player.loc.x, instance.size));
                     (alpha *= GetScreenDistanceV(instance.render.y - global.player.loc.y, instance.size));
                     break;
                 case false:
@@ -983,7 +983,7 @@ import * as socketStuff from "./socketinit.js";
     }
     function getThemeDisplayName(doc) {
         if (doc.value !== "") {
-            let {name, author, content} = parseTheme(doc.value);
+            let { name, author, content } = parseTheme(doc.value);
             if (content !== null) {
                 let displayName = name;
                 let displayAuthor = author === "" ? "" : author === "fan-made" || author === "Fan-made" || author === "Fan-Made" ? "(Fan-Made)" : `(by ${author})`;
@@ -998,14 +998,14 @@ import * as socketStuff from "./socketinit.js";
         }
     }
     function addChangelog(b, a = null) { // From CX Client (Modified) + decoded;
-        let triggerChangelog = ( () => {
+        let triggerChangelog = (() => {
             let a = document.getElementById("changelogTabs")
-            , b = a.firstElementChild
-            , d = document.getElementById("patchNotes")
-            , e = {};
+                , b = a.firstElementChild
+                , d = document.getElementById("patchNotes")
+                , e = {};
             for (let g = 0; g < a.children.length; g++) {
                 let k = a.children[g]
-                , l = k.dataset.type;
+                    , l = k.dataset.type;
                 e[l] = () => {
                     if (k !== b) {
                         var u = b.dataset.type;
@@ -1016,7 +1016,7 @@ import * as socketStuff from "./socketinit.js";
                         b = k
                     }
                 }
-                ;
+                    ;
                 k.addEventListener("click", e[l])
             }
             return e
@@ -1032,18 +1032,18 @@ import * as socketStuff from "./socketinit.js";
                 null,
             ];
             var h = c[1] ? {
-                    "Announcement": "announcement",
-                    "Balance": "balance",
-                    "Balance Update": "balance-update",
-                    "Balance Update Details": "balance",
-                    "Event": "event",
-                    "Event Poll": "poll",
-                    "Gamemode": "event",
-                    "Gamemode Poll": "poll",
-                    "Patch": "patch",
-                    "Poll": "poll",
-                    "Update": "update",
-                } [c[1]] : null,
+                "Announcement": "announcement",
+                "Balance": "balance",
+                "Balance Update": "balance-update",
+                "Balance Update Details": "balance",
+                "Event": "event",
+                "Event Poll": "poll",
+                "Gamemode": "event",
+                "Gamemode Poll": "poll",
+                "Patch": "patch",
+                "Poll": "poll",
+                "Update": "update",
+            }[c[1]] : null,
                 d = document.createElement("div");
             h && d.classList.add(h);
             var y = document.createElement("b"),
@@ -1072,15 +1072,15 @@ import * as socketStuff from "./socketinit.js";
                 if (!u.href) continue;
                 let p = u.href.lastIndexOf("#");
                 -1 !== p && (p = u.href.slice(p + 1),
-                "options-menu" === p ? h[a].addEventListener("click", r => {
-                    r.preventDefault();
-                    tc()
-                }
-                ) : triggerChangelog[p] && h[a].addEventListener("click", r => {
-                    r.preventDefault();
-                    triggerChangelog[p]()
-                }
-                ))
+                    "options-menu" === p ? h[a].addEventListener("click", r => {
+                        r.preventDefault();
+                        tc()
+                    }
+                    ) : triggerChangelog[p] && h[a].addEventListener("click", r => {
+                        r.preventDefault();
+                        triggerChangelog[p]()
+                    }
+                    ))
             }
             d.appendChild(g)
             a && d.appendChild(document.createElement("hr"));
@@ -1696,7 +1696,7 @@ import * as socketStuff from "./socketinit.js";
     }
 
     function drawButton(x, y, width, height, alpha, type = "rect", text, textSize, color1, color2, color3, clickable = false, clickType, clickableRatio, options = {}) {
-        let index = options.index;        
+        let index = options.index;
 
         // If width is set to true, that means we want to calculate it on the text's length.
         if (width == true) width = measureText(text, height);
@@ -1751,445 +1751,445 @@ import * as socketStuff from "./socketinit.js";
     // Entity drawing (this is a function that makes a function)
     const drawEntity = (() => {
         let drawPolyImgs = [],
-        drawPoly3D = new Map(),
-        drawPoly4D = new Map(),
-        cameraFor3dProjection = { x: 0, y: 0, z: -1 },
-        cameraFor4dProjection = { x: 0, y: 0, z: 0, w: -1 },
-        projectPoint3d = p => {
-            if (p.z == 0) return p;
-            p.x /= p.z - cameraFor3dProjection.z;
-            p.y /= p.z - cameraFor3dProjection.z;
-            p.z = 0;
-            return p;
-        },
-        projectPoint4d = p => {
-            if (p.w == 0) return projectPoint3d(p);
-            p.x /= p.w - cameraFor4dProjection.w;
-            p.y /= p.w - cameraFor4dProjection.w;
-            p.z /= p.w - cameraFor4dProjection.w;
-            p.w = 0;
-            return projectPoint3d(p);
-        },
-        rotatePointXY = (p, angle) => {
-            let q = {
-                x: 0,
-                y: 0,
-                z: 0
-            };
-            const cos = Math.cos(angle);
-            const sin = Math.sin(angle);
-            q.x = p.x * cos + p.z * sin;
-            q.z = -p.x * sin + p.z * cos;
-            q.y = p.y * cos - q.z * sin;
-            q.z = p.y * sin + q.z * cos;
-            return q;
-        },
-        rotatePointXYZ = (p, angle) => {
-            let q = {
-                x: 0,
-                y: 0,
-                z: 0,
-                w: 0
-            };
-            const cos = Math.cos(angle);
-            const sin = Math.sin(angle);
-            q.x = p.x * cos + p.z * sin;
-            q.z = -p.x * sin + p.z * cos;
-            q.y = p.y * cos - q.z * sin;
-            q.z = p.y * sin + q.z * cos;
-            let y = q.y;
-            q.y = y * cos - p.w * sin;
-            q.w = y * sin + p.w * cos;
-            let z = q.z;
-            q.z = z * cos - p.w * sin;
-            q.w = z * sin + p.w * cos;
-            return q;
-        },
-        distanceBetweenPointsSquared3d = (a, b) => {
-            let dx = b.x - a.x,
-                dy = b.y - a.y,
-                dz = b.z - a.z;
-            return dx * dx + dy * dy + dz * dz;
-        },
-        distanceBetweenPointsSquared4d = (a, b) => {
-            let dx = b.x - a.x,
-                dy = b.y - a.y,
-                dz = b.z - a.z,
-                dw = b.w - a.w;
-            return dx * dx + dy * dy + dz * dz + dw * dw;
-        },
-        sortSides3d = (arr, a, b) => {
-            let aAvgZ = 0,
-                bAvgZ = 0,
-                aDist = 0,
-                bDist = 0;
-            for (let i = 0; i < a.length; ++i) {
-                aAvgZ += arr[a[i]].z;
-                aDist += distanceBetweenPointsSquared3d(
-                    cameraFor3dProjection,
-                    arr[a[i]]
-                );
-            }
-            for (let i = 0; i < b.length; ++i) {
-                bAvgZ += arr[b[i]].z;
-                bDist += distanceBetweenPointsSquared3d(
-                    cameraFor3dProjection,
-                    arr[b[i]]
-                );
-            }
-            aAvgZ /= a.length;
-            bAvgZ /= b.length;
-            aDist /= a.length * a.length;
-            bDist /= b.length * b.length;
-            return (bAvgZ - aAvgZ) * 1e3 + (bDist - aDist);
-        },
-        sortSides4d = (arr, a, b) => {
-            let aAvgW = 0,
-                bAvgW = 0,
-                aDist = 0,
-                bDist = 0;
-            for (let i = 0; i < a.length; ++i) {
-                aAvgW += arr[a[i]].w;
-                aDist += distanceBetweenPointsSquared4d(
-                    cameraFor4dProjection,
-                    arr[a[i]]
-                );
-            }
-            for (let i = 0; i < b.length; ++i) {
-                bAvgW += arr[b[i]].w;
-                bDist += distanceBetweenPointsSquared4d(
-                    cameraFor4dProjection,
-                    arr[b[i]]
-                );
-            }
-            aAvgW /= a.length;
-            bAvgW /= b.length;
-            aDist /= a.length * a.length;
-            bDist /= b.length * b.length;
-            return (
-                ((bAvgW - aAvgW) * 1e3 + (bDist - aDist)) * 1e3 +
-                sortSides3d(arr, a, b)
-            );
-        },
-        DEAIC = (assignedContext, Alpha, shape, glow, gunLength, turretsLength) => { // AKA: Draw entity as image check
-            if (global.gameUpdate && config.graphical.fancyAnimations && Alpha < 1 && assignedContext != ctx2) {
-                if (config.graphical.optimizeMode) {
-                    if (gunLength > 0 || turretsLength > 0 || glow.radius) return true;
-                    return false;
-                } else if (shape !== 0 || gunLength > 0 || turretsLength > 0 || glow.radius) {
-                    return true;
+            drawPoly3D = new Map(),
+            drawPoly4D = new Map(),
+            cameraFor3dProjection = { x: 0, y: 0, z: -1 },
+            cameraFor4dProjection = { x: 0, y: 0, z: 0, w: -1 },
+            projectPoint3d = p => {
+                if (p.z == 0) return p;
+                p.x /= p.z - cameraFor3dProjection.z;
+                p.y /= p.z - cameraFor3dProjection.z;
+                p.z = 0;
+                return p;
+            },
+            projectPoint4d = p => {
+                if (p.w == 0) return projectPoint3d(p);
+                p.x /= p.w - cameraFor4dProjection.w;
+                p.y /= p.w - cameraFor4dProjection.w;
+                p.z /= p.w - cameraFor4dProjection.w;
+                p.w = 0;
+                return projectPoint3d(p);
+            },
+            rotatePointXY = (p, angle) => {
+                let q = {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                };
+                const cos = Math.cos(angle);
+                const sin = Math.sin(angle);
+                q.x = p.x * cos + p.z * sin;
+                q.z = -p.x * sin + p.z * cos;
+                q.y = p.y * cos - q.z * sin;
+                q.z = p.y * sin + q.z * cos;
+                return q;
+            },
+            rotatePointXYZ = (p, angle) => {
+                let q = {
+                    x: 0,
+                    y: 0,
+                    z: 0,
+                    w: 0
+                };
+                const cos = Math.cos(angle);
+                const sin = Math.sin(angle);
+                q.x = p.x * cos + p.z * sin;
+                q.z = -p.x * sin + p.z * cos;
+                q.y = p.y * cos - q.z * sin;
+                q.z = p.y * sin + q.z * cos;
+                let y = q.y;
+                q.y = y * cos - p.w * sin;
+                q.w = y * sin + p.w * cos;
+                let z = q.z;
+                q.z = z * cos - p.w * sin;
+                q.w = z * sin + p.w * cos;
+                return q;
+            },
+            distanceBetweenPointsSquared3d = (a, b) => {
+                let dx = b.x - a.x,
+                    dy = b.y - a.y,
+                    dz = b.z - a.z;
+                return dx * dx + dy * dy + dz * dz;
+            },
+            distanceBetweenPointsSquared4d = (a, b) => {
+                let dx = b.x - a.x,
+                    dy = b.y - a.y,
+                    dz = b.z - a.z,
+                    dw = b.w - a.w;
+                return dx * dx + dy * dy + dz * dz + dw * dw;
+            },
+            sortSides3d = (arr, a, b) => {
+                let aAvgZ = 0,
+                    bAvgZ = 0,
+                    aDist = 0,
+                    bDist = 0;
+                for (let i = 0; i < a.length; ++i) {
+                    aAvgZ += arr[a[i]].z;
+                    aDist += distanceBetweenPointsSquared3d(
+                        cameraFor3dProjection,
+                        arr[a[i]]
+                    );
                 }
-            }
-            return false;
-        },
-        // Draw body function, (AKA: drawPoly)
-        drawBody = (context, centerX, centerY, radius, sides, angle = 0, borderless, fill, imageInterpolation, hasGlow = false) => {
-            try {
-                // Start drawing
-                context.beginPath();
-                if (sides instanceof Array) {
-                    let dx = Math.cos(angle);
-                    let dy = Math.sin(angle);
-                    for (let [x, y] of sides)
-                        context.lineTo(
-                            centerX + radius * (x * dx - y * dy),
-                            centerY + radius * (y * dx + x * dy)
-                        );
-                } else {
-                    if ("string" === typeof sides) {
-                        if (sides.startsWith("image=")) {
-                            const defaultDirectory = sides.startsWith("image=/");
-                            const clientRootDirectory = sides.startsWith("image=./");
-                            const onlineDirectory = sides.startsWith("image=https");
-                            drawPolyImgs[sides] = new Image();
-                            drawPolyImgs[sides].src =
-                            defaultDirectory ?
-                            `img${sides.slice(6)}` :
-                            clientRootDirectory || onlineDirectory ?
-                            `${onlineDirectory ? sides.slice(6) : sides.slice(7)}` :
-                            "img/missingno.png";
-                            drawPolyImgs[sides].onerror = function() {
-                                drawPolyImgs[sides].src = "img/missingno.png";
-                            }
-
-                            let img = drawPolyImgs[sides];
-                            context.translate(centerX, centerY);
-                            context.rotate(angle);
-                            context.imageSmoothingEnabled = imageInterpolation;
-                            const imageSize = radius / 0.9;
-                            context.drawImage(img, -imageSize, -imageSize, imageSize * 2, imageSize * 2);
-                            context.imageSmoothingEnabled = true;
-                            context.rotate(-angle);
-                            context.translate(-centerX, -centerY);
-                            return;
-                        }
-                        if (sides.startsWith("3d=")) {
-                            let polygon3d = drawPoly3D.get(sides);
-                            if (!polygon3d) {
-                                let dividedParts = sides.slice(3).split("/");
-                                let vertexesRaw = dividedParts[0].split(",").map(Number);
-                                if (vertexesRaw.length % 3 != 0) throw new Error(`3D Shape cannot be rendered. Vertexes count: ${vertexesRaw.length / 3}`);
-                                let vertexes = Array(vertexesRaw.length / 3);
-                                for (let i = 0; i < vertexesRaw.length; i += 3) {
-                                    vertexes[i / 3] = {
-                                        x: vertexesRaw[i],
-                                        y: vertexesRaw[i + 1],
-                                        z: vertexesRaw[i + 2]
-                                    };
-                                }
-                                let indicesRaw = dividedParts[1].split(";");
-                                let indices = [];
-                                for (let i = 0; i < indicesRaw.length; ++i) {
-                                    indices.push(indicesRaw[i].split(",").map(Number));
-                                }
-                                // Optional 4th "/" segment: one colour per face (e.g. "pureWhite,pureBlack,...").
-                                let faceColors = null;
-                                if (dividedParts[3]) {
-                                    faceColors = dividedParts[3].split(",").map(tok => {
-                                        tok = (tok || "").trim();
-                                        if (!tok) return null;
-                                        try {
-                                            return gameDraw.modifyColor(tok.includes(" ") ? tok : tok + " 0 1 0 false");
-                                        } catch (e) { return null; }
-                                    });
-                                }
-                                polygon3d = {
-                                    vertexes,
-                                    indices,
-                                    multiplier: Number(dividedParts[2]),
-                                    faceColors
-                                };
-                                drawPoly3D.set(sides, polygon3d);
-                            }
-                            const rotated = polygon3d.vertexes
-                                .slice()
-                                .map(p => rotatePointXY(p, angle));
-                            const sortedSides = polygon3d.indices
-                                .slice()
-                                .sort((a, b) => sortSides3d(rotated, a, b));
-                            context.lineWidth /= 2;
-                            const size = radius * polygon3d.multiplier;
-                            const defaultFill = context.fillStyle;
-                            for (const sides of sortedSides) {
-                                if (polygon3d.faceColors) {
-                                    const fi = polygon3d.indices.indexOf(sides);
-                                    const fc = fi >= 0 ? polygon3d.faceColors[fi] : null;
-                                    context.fillStyle = fc || defaultFill;
-                                }
-                                context.beginPath();
-                                for (let i = 0; i < sides.length; ++i) {
-                                    const a = projectPoint3d(rotated[sides[i]]);
-                                    const b = projectPoint3d(
-                                        rotated[sides[(i + 1) % sides.length]]
-                                    );
-                                    context.lineTo(
-                                        centerX + a.x * size,
-                                        centerY + a.y * size,
-                                        centerX + b.x * size,
-                                        centerY + b.y * size
-                                    );
-                                }
-                                context.closePath();
-                                context.fill();
-                                context.stroke();
-                            }
-                            if (polygon3d.faceColors) context.fillStyle = defaultFill;
-                            return;
-                        }
-                        if (sides.startsWith("4d=")) {
-                            let polygon4d = drawPoly4D.get(sides);
-                            if (!polygon4d) {
-                                let dividedParts = sides.slice(3).split("/");
-                                let vertexesRaw = dividedParts[0].split(",").map(Number);
-                                if (vertexesRaw.length % 4 != 0) throw new Error(`4D Shape cannot be rendered. Vertexes count: ${vertexesRaw.length / 4}`);
-                                let vertexes = Array(vertexesRaw.length / 4);
-                                for (let i = 0; i < vertexesRaw.length; i += 4) {
-                                    vertexes[i / 4] = {
-                                        x: vertexesRaw[i],
-                                        y: vertexesRaw[i + 1],
-                                        z: vertexesRaw[i + 2],
-                                        w: vertexesRaw[i + 3]
-                                    };
-                                }
-                                let indicesRaw = dividedParts[1].split(";");
-                                let indices = [];
-                                for (let i = 0; i < indicesRaw.length; ++i) {
-                                    indices.push(indicesRaw[i].split(",").map(Number));
-                                }
-                                let faceColors = null;
-                                if (dividedParts[3]) {
-                                    faceColors = dividedParts[3].split(",").map(tok => {
-                                        tok = (tok || "").trim();
-                                        if (!tok) return null;
-                                        try {
-                                            return gameDraw.modifyColor(tok.includes(" ") ? tok : tok + " 0 1 0 false");
-                                        } catch (e) { return null; }
-                                    });
-                                }
-                                polygon4d = {
-                                    vertexes,
-                                    indices,
-                                    multiplier: Number(dividedParts[2]),
-                                    faceColors
-                                };
-                                drawPoly4D.set(sides, polygon4d);
-                            }
-                            const rotated = polygon4d.vertexes
-                                .slice()
-                                .map(p => rotatePointXYZ(p, angle));
-                            const sortedSides = polygon4d.indices
-                                .slice()
-                                .sort((a, b) => sortSides4d(rotated, a, b));
-                            context.lineWidth /= 2;
-                            const size = radius * polygon4d.multiplier;
-                            const defaultFill = context.fillStyle;
-                            for (const sides of sortedSides) {
-                                if (polygon4d.faceColors) {
-                                    const fi = polygon4d.indices.indexOf(sides);
-                                    const fc = fi >= 0 ? polygon4d.faceColors[fi] : null;
-                                    context.fillStyle = fc || defaultFill;
-                                }
-                                context.beginPath();
-                                for (let i = 0; i < sides.length; ++i) {
-                                    const a = projectPoint4d(rotated[sides[i]]);
-                                    const b = projectPoint4d(
-                                        rotated[sides[(i + 1) % sides.length]]
-                                    );
-                                    context.lineTo(
-                                        centerX + a.x * size,
-                                        centerY + a.y * size,
-                                        centerX + b.x * size,
-                                        centerY + b.y * size
-                                    );
-                                }
-                                context.closePath();
-                                context.fill();
-                                context.stroke();
-                            }
-                            if (polygon4d.faceColors) context.fillStyle = defaultFill;
-                            return;
-                        }
-                        let path = new Path2D(sides);
-                        context.save();
-                        context.translate(centerX, centerY);
-                        context.scale(radius, radius);
-                        context.lineWidth /= radius;
-                        context.rotate(angle);
-                        context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
-                        if (!borderless) context.stroke(path);
-                        if (fill) context.fill(path);
-                        context.restore();
-                        return;
-                    }
-                    angle += sides % 2 ? 0 : Math.PI / sides;
+                for (let i = 0; i < b.length; ++i) {
+                    bAvgZ += arr[b[i]].z;
+                    bDist += distanceBetweenPointsSquared3d(
+                        cameraFor3dProjection,
+                        arr[b[i]]
+                    );
                 }
-                if (!sides) {
-                    // Circle
-                    let fillcolor = context.fillStyle;
-                    let strokecolor = context.strokeStyle;
-                    let borderRadius = context.globalAlpha < 1 ? 4 : 2;
-                    switch (hasGlow) {
-                        case true:
-                            context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-                            context.fillStyle = strokecolor;
-                            context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
-                            if (!borderless) context.stroke();
-                            break;
-                        default:
-                            context.arc(centerX, centerY, radius + context.lineWidth / borderRadius, 0, 2 * Math.PI);
-                            context.fillStyle = strokecolor;
-                            context.lineWidth /= 2; // Maintain constant border width
-                            if (!borderless) {
-                                switch (context.globalAlpha) {
-                                    case 1:
-                                        context.fill();
-                                        break;
-                                    default:
-                                        context.stroke();
-                                        break;
-                                }
-                            }
-                            break;
+                aAvgZ /= a.length;
+                bAvgZ /= b.length;
+                aDist /= a.length * a.length;
+                bDist /= b.length * b.length;
+                return (bAvgZ - aAvgZ) * 1e3 + (bDist - aDist);
+            },
+            sortSides4d = (arr, a, b) => {
+                let aAvgW = 0,
+                    bAvgW = 0,
+                    aDist = 0,
+                    bDist = 0;
+                for (let i = 0; i < a.length; ++i) {
+                    aAvgW += arr[a[i]].w;
+                    aDist += distanceBetweenPointsSquared4d(
+                        cameraFor4dProjection,
+                        arr[a[i]]
+                    );
+                }
+                for (let i = 0; i < b.length; ++i) {
+                    bAvgW += arr[b[i]].w;
+                    bDist += distanceBetweenPointsSquared4d(
+                        cameraFor4dProjection,
+                        arr[b[i]]
+                    );
+                }
+                aAvgW /= a.length;
+                bAvgW /= b.length;
+                aDist /= a.length * a.length;
+                bDist /= b.length * b.length;
+                return (
+                    ((bAvgW - aAvgW) * 1e3 + (bDist - aDist)) * 1e3 +
+                    sortSides3d(arr, a, b)
+                );
+            },
+            DEAIC = (assignedContext, Alpha, shape, glow, gunLength, turretsLength) => { // AKA: Draw entity as image check
+                if (global.gameUpdate && config.graphical.fancyAnimations && Alpha < 1 && assignedContext != ctx2) {
+                    if (config.graphical.optimizeMode) {
+                        if (gunLength > 0 || turretsLength > 0 || glow.radius) return true;
+                        return false;
+                    } else if (shape !== 0 || gunLength > 0 || turretsLength > 0 || glow.radius) {
+                        return true;
                     }
-                    context.closePath();
+                }
+                return false;
+            },
+            // Draw body function, (AKA: drawPoly)
+            drawBody = (context, centerX, centerY, radius, sides, angle = 0, borderless, fill, imageInterpolation, hasGlow = false) => {
+                try {
+                    // Start drawing
                     context.beginPath();
-                    context.fillStyle = fillcolor;
-                    context.arc(centerX, centerY, radius * fill, 0, 2 * Math.PI);
-                    if (fill) context.fill();
-                    context.closePath();
-                    return;
-                } else if (0 > sides) {
-                    // Star
-                    if (config.graphical.pointy) context.lineJoin = "miter";
-                    sides = -sides;
-                    angle += (sides % 1) * Math.PI * 2;
-                    sides = Math.floor(sides);
-                    let dip = 1 - 6 / (sides ** 2);
-                    context.moveTo(centerX + radius * Math.cos(angle), centerY + radius * Math.sin(angle));
-                    context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
-                    for (let i = 0; i < sides; i++) {
-                        let htheta = ((i + 0.5) / sides) * 2 * Math.PI + angle,
-                            theta = ((i + 1) / sides) * 2 * Math.PI + angle,
-                            cx = centerX + radius * dip * Math.cos(htheta),
-                            cy = centerY + radius * dip * Math.sin(htheta),
-                            px = centerX + radius * Math.cos(theta),
-                            py = centerY + radius * Math.sin(theta);
-                        if (config.graphical.curvyTraps) {
-                            context.quadraticCurveTo(cx, cy, px, py);
-                        } else {
-                            context.lineTo(cx, cy);
-                            context.lineTo(px, py);
+                    if (sides instanceof Array) {
+                        let dx = Math.cos(angle);
+                        let dy = Math.sin(angle);
+                        for (let [x, y] of sides)
+                            context.lineTo(
+                                centerX + radius * (x * dx - y * dy),
+                                centerY + radius * (y * dx + x * dy)
+                            );
+                    } else {
+                        if ("string" === typeof sides) {
+                            if (sides.startsWith("image=")) {
+                                const defaultDirectory = sides.startsWith("image=/");
+                                const clientRootDirectory = sides.startsWith("image=./");
+                                const onlineDirectory = sides.startsWith("image=https");
+                                drawPolyImgs[sides] = new Image();
+                                drawPolyImgs[sides].src =
+                                    defaultDirectory ?
+                                        `img${sides.slice(6)}` :
+                                        clientRootDirectory || onlineDirectory ?
+                                            `${onlineDirectory ? sides.slice(6) : sides.slice(7)}` :
+                                            "img/missingno.png";
+                                drawPolyImgs[sides].onerror = function () {
+                                    drawPolyImgs[sides].src = "img/missingno.png";
+                                }
+
+                                let img = drawPolyImgs[sides];
+                                context.translate(centerX, centerY);
+                                context.rotate(angle);
+                                context.imageSmoothingEnabled = imageInterpolation;
+                                const imageSize = radius / 0.9;
+                                context.drawImage(img, -imageSize, -imageSize, imageSize * 2, imageSize * 2);
+                                context.imageSmoothingEnabled = true;
+                                context.rotate(-angle);
+                                context.translate(-centerX, -centerY);
+                                return;
+                            }
+                            if (sides.startsWith("3d=")) {
+                                let polygon3d = drawPoly3D.get(sides);
+                                if (!polygon3d) {
+                                    let dividedParts = sides.slice(3).split("/");
+                                    let vertexesRaw = dividedParts[0].split(",").map(Number);
+                                    if (vertexesRaw.length % 3 != 0) throw new Error(`3D Shape cannot be rendered. Vertexes count: ${vertexesRaw.length / 3}`);
+                                    let vertexes = Array(vertexesRaw.length / 3);
+                                    for (let i = 0; i < vertexesRaw.length; i += 3) {
+                                        vertexes[i / 3] = {
+                                            x: vertexesRaw[i],
+                                            y: vertexesRaw[i + 1],
+                                            z: vertexesRaw[i + 2]
+                                        };
+                                    }
+                                    let indicesRaw = dividedParts[1].split(";");
+                                    let indices = [];
+                                    for (let i = 0; i < indicesRaw.length; ++i) {
+                                        indices.push(indicesRaw[i].split(",").map(Number));
+                                    }
+                                    // Optional 4th "/" segment: one colour per face (e.g. "pureWhite,pureBlack,...").
+                                    let faceColors = null;
+                                    if (dividedParts[3]) {
+                                        faceColors = dividedParts[3].split(",").map(tok => {
+                                            tok = (tok || "").trim();
+                                            if (!tok) return null;
+                                            try {
+                                                return gameDraw.modifyColor(tok.includes(" ") ? tok : tok + " 0 1 0 false");
+                                            } catch (e) { return null; }
+                                        });
+                                    }
+                                    polygon3d = {
+                                        vertexes,
+                                        indices,
+                                        multiplier: Number(dividedParts[2]),
+                                        faceColors
+                                    };
+                                    drawPoly3D.set(sides, polygon3d);
+                                }
+                                const rotated = polygon3d.vertexes
+                                    .slice()
+                                    .map(p => rotatePointXY(p, angle));
+                                const sortedSides = polygon3d.indices
+                                    .slice()
+                                    .sort((a, b) => sortSides3d(rotated, a, b));
+                                context.lineWidth /= 2;
+                                const size = radius * polygon3d.multiplier;
+                                const defaultFill = context.fillStyle;
+                                for (const sides of sortedSides) {
+                                    if (polygon3d.faceColors) {
+                                        const fi = polygon3d.indices.indexOf(sides);
+                                        const fc = fi >= 0 ? polygon3d.faceColors[fi] : null;
+                                        context.fillStyle = fc || defaultFill;
+                                    }
+                                    context.beginPath();
+                                    for (let i = 0; i < sides.length; ++i) {
+                                        const a = projectPoint3d(rotated[sides[i]]);
+                                        const b = projectPoint3d(
+                                            rotated[sides[(i + 1) % sides.length]]
+                                        );
+                                        context.lineTo(
+                                            centerX + a.x * size,
+                                            centerY + a.y * size,
+                                            centerX + b.x * size,
+                                            centerY + b.y * size
+                                        );
+                                    }
+                                    context.closePath();
+                                    context.fill();
+                                    context.stroke();
+                                }
+                                if (polygon3d.faceColors) context.fillStyle = defaultFill;
+                                return;
+                            }
+                            if (sides.startsWith("4d=")) {
+                                let polygon4d = drawPoly4D.get(sides);
+                                if (!polygon4d) {
+                                    let dividedParts = sides.slice(3).split("/");
+                                    let vertexesRaw = dividedParts[0].split(",").map(Number);
+                                    if (vertexesRaw.length % 4 != 0) throw new Error(`4D Shape cannot be rendered. Vertexes count: ${vertexesRaw.length / 4}`);
+                                    let vertexes = Array(vertexesRaw.length / 4);
+                                    for (let i = 0; i < vertexesRaw.length; i += 4) {
+                                        vertexes[i / 4] = {
+                                            x: vertexesRaw[i],
+                                            y: vertexesRaw[i + 1],
+                                            z: vertexesRaw[i + 2],
+                                            w: vertexesRaw[i + 3]
+                                        };
+                                    }
+                                    let indicesRaw = dividedParts[1].split(";");
+                                    let indices = [];
+                                    for (let i = 0; i < indicesRaw.length; ++i) {
+                                        indices.push(indicesRaw[i].split(",").map(Number));
+                                    }
+                                    let faceColors = null;
+                                    if (dividedParts[3]) {
+                                        faceColors = dividedParts[3].split(",").map(tok => {
+                                            tok = (tok || "").trim();
+                                            if (!tok) return null;
+                                            try {
+                                                return gameDraw.modifyColor(tok.includes(" ") ? tok : tok + " 0 1 0 false");
+                                            } catch (e) { return null; }
+                                        });
+                                    }
+                                    polygon4d = {
+                                        vertexes,
+                                        indices,
+                                        multiplier: Number(dividedParts[2]),
+                                        faceColors
+                                    };
+                                    drawPoly4D.set(sides, polygon4d);
+                                }
+                                const rotated = polygon4d.vertexes
+                                    .slice()
+                                    .map(p => rotatePointXYZ(p, angle));
+                                const sortedSides = polygon4d.indices
+                                    .slice()
+                                    .sort((a, b) => sortSides4d(rotated, a, b));
+                                context.lineWidth /= 2;
+                                const size = radius * polygon4d.multiplier;
+                                const defaultFill = context.fillStyle;
+                                for (const sides of sortedSides) {
+                                    if (polygon4d.faceColors) {
+                                        const fi = polygon4d.indices.indexOf(sides);
+                                        const fc = fi >= 0 ? polygon4d.faceColors[fi] : null;
+                                        context.fillStyle = fc || defaultFill;
+                                    }
+                                    context.beginPath();
+                                    for (let i = 0; i < sides.length; ++i) {
+                                        const a = projectPoint4d(rotated[sides[i]]);
+                                        const b = projectPoint4d(
+                                            rotated[sides[(i + 1) % sides.length]]
+                                        );
+                                        context.lineTo(
+                                            centerX + a.x * size,
+                                            centerY + a.y * size,
+                                            centerX + b.x * size,
+                                            centerY + b.y * size
+                                        );
+                                    }
+                                    context.closePath();
+                                    context.fill();
+                                    context.stroke();
+                                }
+                                if (polygon4d.faceColors) context.fillStyle = defaultFill;
+                                return;
+                            }
+                            let path = new Path2D(sides);
+                            context.save();
+                            context.translate(centerX, centerY);
+                            context.scale(radius, radius);
+                            context.lineWidth /= radius;
+                            context.rotate(angle);
+                            context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
+                            if (!borderless) context.stroke(path);
+                            if (fill) context.fill(path);
+                            context.restore();
+                            return;
+                        }
+                        angle += sides % 2 ? 0 : Math.PI / sides;
+                    }
+                    if (!sides) {
+                        // Circle
+                        let fillcolor = context.fillStyle;
+                        let strokecolor = context.strokeStyle;
+                        let borderRadius = context.globalAlpha < 1 ? 4 : 2;
+                        switch (hasGlow) {
+                            case true:
+                                context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                                context.fillStyle = strokecolor;
+                                context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
+                                if (!borderless) context.stroke();
+                                break;
+                            default:
+                                context.arc(centerX, centerY, radius + context.lineWidth / borderRadius, 0, 2 * Math.PI);
+                                context.fillStyle = strokecolor;
+                                context.lineWidth /= 2; // Maintain constant border width
+                                if (!borderless) {
+                                    switch (context.globalAlpha) {
+                                        case 1:
+                                            context.fill();
+                                            break;
+                                        default:
+                                            context.stroke();
+                                            break;
+                                    }
+                                }
+                                break;
+                        }
+                        context.closePath();
+                        context.beginPath();
+                        context.fillStyle = fillcolor;
+                        context.arc(centerX, centerY, radius * fill, 0, 2 * Math.PI);
+                        if (fill) context.fill();
+                        context.closePath();
+                        return;
+                    } else if (0 > sides) {
+                        // Star
+                        if (config.graphical.pointy) context.lineJoin = "miter";
+                        sides = -sides;
+                        angle += (sides % 1) * Math.PI * 2;
+                        sides = Math.floor(sides);
+                        let dip = 1 - 6 / (sides ** 2);
+                        context.moveTo(centerX + radius * Math.cos(angle), centerY + radius * Math.sin(angle));
+                        context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
+                        for (let i = 0; i < sides; i++) {
+                            let htheta = ((i + 0.5) / sides) * 2 * Math.PI + angle,
+                                theta = ((i + 1) / sides) * 2 * Math.PI + angle,
+                                cx = centerX + radius * dip * Math.cos(htheta),
+                                cy = centerY + radius * dip * Math.sin(htheta),
+                                px = centerX + radius * Math.cos(theta),
+                                py = centerY + radius * Math.sin(theta);
+                            if (config.graphical.curvyTraps) {
+                                context.quadraticCurveTo(cx, cy, px, py);
+                            } else {
+                                context.lineTo(cx, cy);
+                                context.lineTo(px, py);
+                            }
+                        }
+                    } else if (0 < sides) {
+                        // Polygon
+                        angle += (sides % 1) * Math.PI * 2;
+                        sides = Math.floor(sides);
+                        context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
+                        for (let i = 0; i < sides; i++) {
+                            let theta = (i / sides) * 2 * Math.PI + angle;
+                            context.lineTo(centerX + radius * Math.cos(theta), centerY + radius * Math.sin(theta));
                         }
                     }
-                } else if (0 < sides) {
-                    // Polygon
-                    angle += (sides % 1) * Math.PI * 2;
-                    sides = Math.floor(sides);
-                    context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
-                    for (let i = 0; i < sides; i++) {
-                        let theta = (i / sides) * 2 * Math.PI + angle;
-                        context.lineTo(centerX + radius * Math.cos(theta), centerY + radius * Math.sin(theta));
-                    }
+                    context.closePath();
+                    if (!borderless) context.stroke();
+                    if (fill) context.fill();
+                    context.lineJoin = "round";
+                } catch (e) { // this actually prevents to panic the client. so we will just call "resizeEvent()".
+                    resizeEvent();
+                    console.error(`CanvasRenderingContext2D error: ${e}`);
+                }
+            },
+            // Draw gun function, (AKA: drawTrapezoid)
+            drawGun = (context, x, y, length, height, aspect, angle, borderless, fill, alpha, strokeWidth, position) => {
+                let h = [];
+                h = aspect > 0 ? [height * aspect, height] : [height, -height * aspect];
+
+                // Construct a trapezoid at angle 0
+                let points = [],
+                    sinT = Math.sin(angle),
+                    cosT = Math.cos(angle);
+                points.push([-position, h[1]]);
+                points.push([length * 2 - position, h[0]]);
+                points.push([length * 2 - position, -h[0]]);
+                points.push([-position, -h[1]]);
+                context.globalAlpha = alpha;
+
+                // Rotate it to the new angle via vector rotation
+                context.beginPath();
+                for (let point of points) {
+                    let newX = point[0] * cosT - point[1] * sinT + x,
+                        newY = point[0] * sinT + point[1] * cosT + y;
+                    context.lineTo(newX, newY);
                 }
                 context.closePath();
+                context.lineWidth *= strokeWidth
+                context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
                 if (!borderless) context.stroke();
+                context.lineWidth /= fill ? 1 : 0.5; // Maintain constant border width
                 if (fill) context.fill();
-                context.lineJoin = "round";
-            } catch (e) { // this actually prevents to panic the client. so we will just call "resizeEvent()".
-                resizeEvent();
-                console.error(`CanvasRenderingContext2D error: ${e}`);
-            }
-        },
-        // Draw gun function, (AKA: drawTrapezoid)
-        drawGun = (context, x, y, length, height, aspect, angle, borderless, fill, alpha, strokeWidth, position) => {
-            let h = [];
-            h = aspect > 0 ? [height * aspect, height] : [height, -height * aspect];
-
-            // Construct a trapezoid at angle 0
-            let points = [],
-                sinT = Math.sin(angle),
-                cosT = Math.cos(angle);
-            points.push([-position, h[1]]);
-            points.push([length * 2 - position, h[0]]);
-            points.push([length * 2 - position, -h[0]]);
-            points.push([-position, -h[1]]);
-            context.globalAlpha = alpha;
-
-            // Rotate it to the new angle via vector rotation
-            context.beginPath();
-            for (let point of points) {
-                let newX = point[0] * cosT - point[1] * sinT + x,
-                    newY = point[0] * sinT + point[1] * cosT + y;
-                context.lineTo(newX, newY);
-            }
-            context.closePath();
-            context.lineWidth *= strokeWidth
-            context.lineWidth *= fill ? 1 : 0.5; // Maintain constant border width
-            if (!borderless) context.stroke();
-            context.lineWidth /= fill ? 1 : 0.5; // Maintain constant border width
-            if (fill) context.fill();
-            context.globalAlpha = 1;
-        };
+                context.globalAlpha = 1;
+            };
         // The actual drawEntity function
         return (baseColor, x, y, instance, ratio, alpha = 1, scale = 1, lineWidthMult = 1, rot = 0, turretsObeyRot = false, assignedContext = false, turretInfo = false, render = instance.render, smoothsize = false) => {
             // --- Fast early exit for invisible objects ---
@@ -2469,21 +2469,21 @@ import * as socketStuff from "./socketinit.js";
         return colors[index % colors.length].toString();
     }
     function colorBlend(color1, color2, d = 0.5) {
-      if (0 >= d) return color1;
-      if (1 <= d) return color2;
-      let e = 1 - d;
-      color1 = parseInt(color1.slice(1, 7), 16);
-      color2 = parseInt(color2.slice(1, 7), 16);
-      return (
-        "#" +
-        (
-          (((color1 & 16711680) * e + (color2 & 16711680) * d) & 16711680) |
-          (((color1 & 65280) * e + (color2 & 65280) * d) & 65280) |
-          (((color1 & 255) * e + (color2 & 255) * d) & 255)
-        )
-          .toString(16)
-          .padStart(6, "0")
-      );
+        if (0 >= d) return color1;
+        if (1 <= d) return color2;
+        let e = 1 - d;
+        color1 = parseInt(color1.slice(1, 7), 16);
+        color2 = parseInt(color2.slice(1, 7), 16);
+        return (
+            "#" +
+            (
+                (((color1 & 16711680) * e + (color2 & 16711680) * d) & 16711680) |
+                (((color1 & 65280) * e + (color2 & 65280) * d) & 65280) |
+                (((color1 & 255) * e + (color2 & 255) * d) & 255)
+            )
+                .toString(16)
+                .padStart(6, "0")
+        );
     }
     function getOldIconColor(index) {
         let color = gameDraw.getColor((index % 9) + 10);
@@ -2542,7 +2542,7 @@ import * as socketStuff from "./socketinit.js";
         drawGuiRect(x, y, len, height, true); // Border
     }
 
-    const HEXAGON = (function() {
+    const HEXAGON = (function () {
         const SQRT3 = Math.sqrt(3);
         let output = []
         for (let i = 0; i < Math.PI * 2; i += Math.PI / 3) {
@@ -2694,14 +2694,14 @@ import * as socketStuff from "./socketinit.js";
             instance.render.x = !config.graphical.interpolation ?
                 motion.predict(instance.render.lastx, instance.x, instance.render.lastvx, instance.vx) :
                 config.graphical.lerpAnimations ?
-                util.lerp(instance.render.x, Math.round(instance.x + instance.vx), 0.1, true) :
-                instance.render.xAnim.get(tick, 1 !== rst);
+                    util.lerp(instance.render.x, Math.round(instance.x + instance.vx), 0.1, true) :
+                    instance.render.xAnim.get(tick, 1 !== rst);
 
             instance.render.y = !config.graphical.interpolation ?
                 motion.predict(instance.render.lasty, instance.y, instance.render.lastvy, instance.vy) :
                 config.graphical.lerpAnimations ?
-                util.lerp(instance.render.y, Math.round(instance.y + instance.vy), 0.1, true) :
-                instance.render.yAnim.get(tick, 1 !== rst);
+                    util.lerp(instance.render.y, Math.round(instance.y + instance.vy), 0.1, true) :
+                    instance.render.yAnim.get(tick, 1 !== rst);
 
             instance.render.f = !config.graphical.interpolation ?
                 motion.predictFacing(instance.render.lastf, instance.facing) :
@@ -3209,8 +3209,8 @@ import * as socketStuff from "./socketinit.js";
                 text = txt;
 
             if (0 >= duration) {
-                 global.messages.splice(i, 1);
-                 continue;
+                global.messages.splice(i, 1);
+                continue;
             }
 
             let K = Math.max(0, Math.min(1, time / 300, duration / 300));
@@ -3283,7 +3283,7 @@ import * as socketStuff from "./socketinit.js";
             }
             if (chat.targetY === undefined) {
                 chat.targetY = i * messageSpacing;
-                chat.currentY = i === 0 ? 0 : (i-1) * messageSpacing;
+                chat.currentY = i === 0 ? 0 : (i - 1) * messageSpacing;
             }
             chat.targetY = i * messageSpacing;
             const animationSpeed = 10;
@@ -3348,6 +3348,8 @@ import * as socketStuff from "./socketinit.js";
             }
         }
     }
+    const devIcon = new Image();
+    devIcon.src = "/img/twm.png";
 
     function drawName(x, y, instance, ratio, alpha, isize) {
         if (!(0.02 > alpha)) {
@@ -3359,13 +3361,71 @@ import * as socketStuff from "./socketinit.js";
             x += global.screenWidth / 2;
             y += global.screenHeight / 2;
 
-            if (instance.id !== gui.playerid && instance.nameplate) {
+            if (instance.nameplate) {
                 var name = instance.name.substring(7, instance.name.length + 1);
                 var namecolor = instance.name.substring(0, 7);
+
                 ctx[1].globalAlpha = alpha * alpha * fade;
                 let g = Math.max(20, size);
-                if (global.GUIStatus.renderPlayerNames) drawText(name, x, y - g * (global.GUIStatus.renderPlayerScores ? 1.9 : 1.45), 0.55 * g, namecolor == "#FFFFFF" ? color.guiwhite : namecolor, "center", false, 1, true, ctx[1]);
-                if (global.GUIStatus.renderPlayerScores || typeof instance.score === "string") drawText(typeof instance.score === "string" ? instance.score : util.handleLargeNumber(instance.score, 1), x, y - 1.45 * g, 0.3 * g, namecolor == "#FFFFFF" ? color.guiwhite : namecolor, "center", false, 1, true, ctx[1]);
+
+                if (global.GUIStatus.renderPlayerNames) {
+                    const nameY = y - g * (global.GUIStatus.renderPlayerScores ? 1.9 : 1.45);
+                    const nameSize = 0.55 * g;
+
+                    drawText(
+                        name,
+                        x,
+                        nameY,
+                        nameSize,
+                        namecolor == "#FFFFFF" ? color.guiwhite : namecolor,
+                        "center",
+                        false,
+                        1,
+                        true,
+                        ctx[1]
+                    );
+
+                    if (
+                        name === "technoz3n (techy)" &&
+                        devIcon.complete &&
+                        devIcon.naturalWidth > 0
+                    ) {
+                        const fontSize = nameSize + config.graphical.fontSizeBoost;
+
+                        ctx[1].save();
+                        ctx[1].font = `bold ${fontSize}px Ubuntu`;
+
+                        const nameWidth = ctx[1].measureText(name).width;
+
+                        ctx[1].globalAlpha = alpha * alpha * fade;
+
+                        const iconSize = nameSize * 3.5;
+                        const iconX = x - iconSize / 2;
+                        const iconY = nameY - iconSize - nameSize * 1.25;
+
+                        ctx[1].drawImage(devIcon, iconX, iconY, iconSize, iconSize);
+
+                        ctx[1].restore();
+                    }
+                }
+
+                if (global.GUIStatus.renderPlayerScores || typeof instance.score === "string") {
+                    drawText(
+                        typeof instance.score === "string"
+                            ? instance.score
+                            : util.handleLargeNumber(instance.score, 1),
+                        x,
+                        y - 1.45 * g,
+                        0.3 * g,
+                        namecolor == "#FFFFFF" ? color.guiwhite : namecolor,
+                        "center",
+                        false,
+                        1,
+                        true,
+                        ctx[1]
+                    );
+                }
+
                 ctx[1].globalAlpha = 1;
             }
         }
@@ -3680,7 +3740,7 @@ import * as socketStuff from "./socketinit.js";
         let length = Math.max(measureText(watermarkText, 32)) / 16;
         let gradientTransition = global.showDebug ? 4.1 : 2;
         let watermarkTextPos1 = Math.round(x + len / gradientTransition) + 0.5;
-        let watermarkColor = gameDraw.getColor({gradient: true, asset: [{color: `${color.pink}`}, {color: `${color.purple}`}]}, ctx[2], watermarkTextPos1 - length, length * 0.085, watermarkTextPos1 + length, 0);
+        let watermarkColor = gameDraw.getColor({ gradient: true, asset: [{ color: `${color.pink}` }, { color: `${color.purple}` }] }, ctx[2], watermarkTextPos1 - length, length * 0.085, watermarkTextPos1 + length, 0);
         if (global.showDebug) {
             let getRenderingInfo = (data, isTurret) => {
                 isTurret ? global.renderingInfo.turretEntities += data.length : global.renderingInfo.entities += data.length;
@@ -4109,11 +4169,11 @@ import * as socketStuff from "./socketinit.js";
             statNames,
             clickableRatio = global.canvas.height / global.screenHeight / global.ratio;
 
-            try {
-                statNames = gui.getStatNames(global.mockups[parseInt(gui.type.split("-")[0])].statnames);
-            } catch (e) {
-                statNames = gui.getStatNames(global.missingno[0].statnames);
-            }
+        try {
+            statNames = gui.getStatNames(global.mockups[parseInt(gui.type.split("-")[0])].statnames);
+        } catch (e) {
+            statNames = gui.getStatNames(global.missingno[0].statnames);
+        }
 
         if (global.canSkill || global.showSkill) {
             for (let i = 0; i < gui.skills.length; i++) {
@@ -4216,7 +4276,7 @@ import * as socketStuff from "./socketinit.js";
             global.canvas.chatBox.style.width = (boxLengthHalf * 2 + 0.75 * g) / global.screenWidth * 100 + `%`;
             global.canvas.chatBox.style.height = 0.95 * g + "px";
             global.canvas.chatBox.style.left = (x - boxLengthHalf - 0.75 * g / 2) / global.screenWidth * 100 + `%`;
-            global.canvas.chatBox.style.top =  (y - g * (2.26) - 0.55 * g) / global.screenWidth * window.innerWidth + "px";
+            global.canvas.chatBox.style.top = (y - g * (2.26) - 0.55 * g) / global.screenWidth * window.innerWidth + "px";
             // Input
             global.canvas.chatInput.style.opacity = global.showChatGlide;
             global.canvas.chatInput.style["font-size"] = 0.5 * g + "px";
@@ -4224,7 +4284,7 @@ import * as socketStuff from "./socketinit.js";
             global.canvas.chatInput.style.width = (boxLengthHalf * 2 + 0.35 * g) / global.screenWidth * 100 + `%`;
             global.canvas.chatInput.style.height = 0.95 * g + "px";
             global.canvas.chatInput.style.left = (x - boxLengthHalf - 0.35 * g / 2) / global.screenWidth * 100 + `%`;
-            global.canvas.chatInput.style.top =  (y - g * (2.26) - 0.55 * g) / global.screenWidth * window.innerWidth + "px";
+            global.canvas.chatInput.style.top = (y - g * (2.26) - 0.55 * g) / global.screenWidth * window.innerWidth + "px";
             if (global.canvas.chatBox && global.showChatGlide < 0.005 && !global.showChat) chatInput.force(0), global.canvas.chatInput.remove(), global.canvas.chatBox.remove(), global.canvas.chatBox = false;
         }
     }
@@ -4372,13 +4432,13 @@ import * as socketStuff from "./socketinit.js";
         ctx[2].globalAlpha = global.lerp(3, 3.25, glide);
         if (global.cannotRespawn || global.mobile || global.gamepadMode) drawText(global.cannotRespawn ?
             global.respawnTimeout ?
-            "(you may respawn in " + global.respawnTimeout + " second" + `${global.respawnTimeout <= 1 ? "" : "s"}` + ")"
-            : "(you cannot respawn)"
+                "(you may respawn in " + global.respawnTimeout + " second" + `${global.respawnTimeout <= 1 ? "" : "s"}` + ")"
+                : "(you cannot respawn)"
             : global.mobile ?
-            "(tap to respawn)"
-            : global.gamepadMode ?
-            "(Press RT or R2 button to respawn)"
-            : "",
+                "(tap to respawn)"
+                : global.gamepadMode ?
+                    "(Press RT or R2 button to respawn)"
+                    : "",
             x, y + 189, 16, color.guiwhite, "center");
         if (!global.disconnected && !global.cannotRespawn) {
             if (!global.mobile && !global.gamepadMode) {
@@ -4441,7 +4501,7 @@ import * as socketStuff from "./socketinit.js";
             global.player.rendery = global.player.rendery * n + playery * (1 - n);
         } else if (!config.graphical.interpolation) {
             global.player.renderx = motion.predict(global.player.lastx, global.player.cx.x, global.player.lastvx, global.player.vx),
-            global.player.rendery = motion.predict(global.player.lasty, global.player.cy.y, global.player.lastvy, global.player.vy);
+                global.player.rendery = motion.predict(global.player.lasty, global.player.cy.y, global.player.lastvy, global.player.vy);
         } else {
             global.player.renderx = playerx;
             global.player.rendery = playery;
@@ -4496,15 +4556,15 @@ import * as socketStuff from "./socketinit.js";
 
     function optionsMenu_drawRoundedRect(x, y, w, h, r) {
         ctx[2].beginPath();
-        ctx[2].moveTo(x+r, y);
-        ctx[2].lineTo(x+w-r, y);
-        ctx[2].quadraticCurveTo(x+w, y, x+w, y+r);
-        ctx[2].lineTo(x+w, y+h-r);
-        ctx[2].quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-        ctx[2].lineTo(x+r, y+h);
-        ctx[2].quadraticCurveTo(x, y+h, x, y+h-r);
-        ctx[2].lineTo(x, y+r);
-        ctx[2].quadraticCurveTo(x, y, x+r, y);
+        ctx[2].moveTo(x + r, y);
+        ctx[2].lineTo(x + w - r, y);
+        ctx[2].quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx[2].lineTo(x + w, y + h - r);
+        ctx[2].quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx[2].lineTo(x + r, y + h);
+        ctx[2].quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx[2].lineTo(x, y + r);
+        ctx[2].quadraticCurveTo(x, y, x + r, y);
         ctx[2].closePath();
     }
 
@@ -4749,7 +4809,7 @@ import * as socketStuff from "./socketinit.js";
         global.optionsMenu_Anim._panelH = PANEL_HEIGHT;
         if (global.optionsMenu_Anim.isOpened && global.optionsMenu_Anim._wheelHandler === undefined) {
             global.optionsMenu_Anim._wheelHandler = (e) => {
-                if (!global.clickables.optionsMenu.mainMenuIdle.check({x: global.mouse.x, y: global.mouse.y})) return;
+                if (!global.clickables.optionsMenu.mainMenuIdle.check({ x: global.mouse.x, y: global.mouse.y })) return;
                 const tab = global.optionsMenu_Anim.activeTab || 0;
                 global.optionsMenu_Anim.scrollTargets[tab] =
                     (global.optionsMenu_Anim.scrollTargets[tab] || 0) + e.deltaY * 0.8;
@@ -4858,77 +4918,79 @@ import * as socketStuff from "./socketinit.js";
             // OPTIONS TAB
 
             drawText("Game Appearance", panelX + PANEL_WIDTH / 2, PANEL_Y + 30, 15.5, color.guiwhite, "center");
-            drawText("UI Elements",     panelX + PANEL_WIDTH / 2, PANEL_Y + 385, 15.5, color.guiwhite, "center");
-            drawText("Extra",           panelX + PANEL_WIDTH / 2, PANEL_Y + 575, 15.5, color.guiwhite, "center");
-            drawText("Performance",     panelX + PANEL_WIDTH / 2, PANEL_Y + 745, 15.5, color.guiwhite, "center");
+            drawText("UI Elements", panelX + PANEL_WIDTH / 2, PANEL_Y + 385, 15.5, color.guiwhite, "center");
+            drawText("Extra", panelX + PANEL_WIDTH / 2, PANEL_Y + 575, 15.5, color.guiwhite, "center");
+            drawText("Performance", panelX + PANEL_WIDTH / 2, PANEL_Y + 745, 15.5, color.guiwhite, "center");
 
             if (!global.optionsCheckboxes) {
                 global.optionsCheckboxes = [
                     // Game Appearance
-                    { type: "checkbox",  id: "optRenderNames",         label: "Player Names",          column: 0, row: 0, section: "appearance", tooltip: "Show player names." },
-                    { type: "checkbox",  id: "optRenderScores",        label: "Player Scores",         column: 0, row: 1, section: "appearance", tooltip: "Show player scores." },
-                    { type: "checkbox",  id: "optNoGrid",              label: "Background Grid",       column: 0, row: 2, section: "appearance", tooltip: "Show the background grid.", reverseCheck: true },
-                    { type: "checkbox",  id: "optPointy",              label: "Sharp Traps",           column: 0, row: 3, section: "appearance", tooltip: "Sharpen the corners of traps." },
-                    { type: "checkbox",  id: "optSharpEdges",          label: "Sharp Polygons",        column: 0, row: 4, section: "appearance", tooltip: "Sharpen the corners of all polygons.\n" + "May slightly lower the frame rate." },
-                    { type: "checkbox",  id: "coloredHealthbars",      label: "Colored Health Bars",   column: 0, row: 5, section: "appearance", tooltip: "Make the health and shield bar(s) of entities match their body color." },
-                    { type: "checkbox",  id: "optHexaGrid",            label: "Hexagon Grid",          column: 0, row: 6, section: "appearance", tooltip: "Make the background grid hexagonal.\n" + "May slightly lower the frame rate." },
-                    { type: "slidingBar",id: "strokeThickness",        label: "Border Thickness",      column: 0, row: 7, section: "appearance", tooltip: "Choose the thickness of the border of entities.",
-                      maxValue: 6, maxLowestValue: 0.7, listTarget: "graphical", target: "borderChunk",
-                      trigger: (mouse, data) => {
-                        let pointer = optionsMenu_getPointer();
-                        if (data.bounds) {
-                            let listFolder = config[data.listTarget];
-                            const knobWidth = 12.2;
-                            const halfKnob = knobWidth / 2;
-                            const adjustedX = data.bounds.x + halfKnob;
-                            const adjustedWidth = data.bounds.width - knobWidth;
-                            const ratio = Math.max(0, Math.min(1, (pointer.x - adjustedX) / adjustedWidth));
-                            const range = data.maxValue - data.maxLowestValue;
-                            let value = (ratio * range) + data.maxLowestValue;
-                            listFolder[data.target] = value;
+                    { type: "checkbox", id: "optRenderNames", label: "Player Names", column: 0, row: 0, section: "appearance", tooltip: "Show player names." },
+                    { type: "checkbox", id: "optRenderScores", label: "Player Scores", column: 0, row: 1, section: "appearance", tooltip: "Show player scores." },
+                    { type: "checkbox", id: "optNoGrid", label: "Background Grid", column: 0, row: 2, section: "appearance", tooltip: "Show the background grid.", reverseCheck: true },
+                    { type: "checkbox", id: "optPointy", label: "Sharp Traps", column: 0, row: 3, section: "appearance", tooltip: "Sharpen the corners of traps." },
+                    { type: "checkbox", id: "optSharpEdges", label: "Sharp Polygons", column: 0, row: 4, section: "appearance", tooltip: "Sharpen the corners of all polygons.\n" + "May slightly lower the frame rate." },
+                    { type: "checkbox", id: "coloredHealthbars", label: "Colored Health Bars", column: 0, row: 5, section: "appearance", tooltip: "Make the health and shield bar(s) of entities match their body color." },
+                    { type: "checkbox", id: "optHexaGrid", label: "Hexagon Grid", column: 0, row: 6, section: "appearance", tooltip: "Make the background grid hexagonal.\n" + "May slightly lower the frame rate." },
+                    {
+                        type: "slidingBar", id: "strokeThickness", label: "Border Thickness", column: 0, row: 7, section: "appearance", tooltip: "Choose the thickness of the border of entities.",
+                        maxValue: 6, maxLowestValue: 0.7, listTarget: "graphical", target: "borderChunk",
+                        trigger: (mouse, data) => {
+                            let pointer = optionsMenu_getPointer();
+                            if (data.bounds) {
+                                let listFolder = config[data.listTarget];
+                                const knobWidth = 12.2;
+                                const halfKnob = knobWidth / 2;
+                                const adjustedX = data.bounds.x + halfKnob;
+                                const adjustedWidth = data.bounds.width - knobWidth;
+                                const ratio = Math.max(0, Math.min(1, (pointer.x - adjustedX) / adjustedWidth));
+                                const range = data.maxValue - data.maxLowestValue;
+                                let value = (ratio * range) + data.maxLowestValue;
+                                listFolder[data.target] = value;
+                            }
                         }
-                      }
                     },
 
-                    { type: "checkbox", id: "optChatMessages",        label: "Chat Messages",         column: 1, row: 0, section: "appearance", tooltip: "Show chat messages." },
-                    { type: "checkbox", id: "optRenderHealth",        label: "Health Bars",           column: 1, row: 1, section: "appearance", tooltip: "Show health bars." },
-                    { type: "checkbox", id: "separatedHealthbars",    label: "Separate Shield Bar",   column: 1, row: 2, section: "appearance", tooltip: "Separate the shield bar from the health bar." },
-                    { type: "checkbox", id: "optCurvyTraps",          label: "Curvy Traps",           column: 1, row: 3, section: "appearance", tooltip: "Add curvature to the sides of traps.\n" + "May slightly lower the frame rate." },
-                    { type: "checkbox", id: "optTankSkins",           label: "Tank Skins",            column: 1, row: 4, section: "appearance", tooltip: "Show tank skins.\n" + "Note: Skins will be in grayscale if the low WebGL driver is selected." },
-                    { type: "checkbox", id: "optSecretOptions",       label: "Secret Options",        column: 1, row: 6, section: "appearance", tooltip: "Unlock the secret options tab.\n" + "Note: Some of these options are hidden for a reason. They can cause glitches, and may get removed at any time." },
+                    { type: "checkbox", id: "optChatMessages", label: "Chat Messages", column: 1, row: 0, section: "appearance", tooltip: "Show chat messages." },
+                    { type: "checkbox", id: "optRenderHealth", label: "Health Bars", column: 1, row: 1, section: "appearance", tooltip: "Show health bars." },
+                    { type: "checkbox", id: "separatedHealthbars", label: "Separate Shield Bar", column: 1, row: 2, section: "appearance", tooltip: "Separate the shield bar from the health bar." },
+                    { type: "checkbox", id: "optCurvyTraps", label: "Curvy Traps", column: 1, row: 3, section: "appearance", tooltip: "Add curvature to the sides of traps.\n" + "May slightly lower the frame rate." },
+                    { type: "checkbox", id: "optTankSkins", label: "Tank Skins", column: 1, row: 4, section: "appearance", tooltip: "Show tank skins.\n" + "Note: Skins will be in grayscale if the low WebGL driver is selected." },
+                    { type: "checkbox", id: "optSecretOptions", label: "Secret Options", column: 1, row: 6, section: "appearance", tooltip: "Unlock the secret options tab.\n" + "Note: Some of these options are hidden for a reason. They can cause glitches, and may get removed at any time." },
 
                     // UI Elements
-                    { type: "checkbox", id: "optRenderUpgrades",      label: "Upgrades",              column: 0, row: 0, section: "ui", tooltip: "Toggle the visibility of the class and skill upgrade menus." },
-                    { type: "checkbox", id: "optRenderPlayerBars",    label: "Player Bars",           column: 0, row: 1, section: "ui", tooltip: "Toggle the visibility of the score and level bars." },
-                    { type: "checkbox", id: "optRenderKillbar",       label: "Kill Bar",              column: 0, row: 2, section: "ui", tooltip: "Toggle the visibility of the kill bar, which shows the number of kills, assists, and boss kills." },
-                    { type: "checkbox", id: "optOldUiStyle",          label: "Classic UI",            column: 0, row: 3, section: "ui", tooltip: "Changes the UI to the 2023 layout." },
+                    { type: "checkbox", id: "optRenderUpgrades", label: "Upgrades", column: 0, row: 0, section: "ui", tooltip: "Toggle the visibility of the class and skill upgrade menus." },
+                    { type: "checkbox", id: "optRenderPlayerBars", label: "Player Bars", column: 0, row: 1, section: "ui", tooltip: "Toggle the visibility of the score and level bars." },
+                    { type: "checkbox", id: "optRenderKillbar", label: "Kill Bar", column: 0, row: 2, section: "ui", tooltip: "Toggle the visibility of the kill bar, which shows the number of kills, assists, and boss kills." },
+                    { type: "checkbox", id: "optOldUiStyle", label: "Classic UI", column: 0, row: 3, section: "ui", tooltip: "Changes the UI to the 2023 layout." },
 
-                    { type: "checkbox",  id: "optRenderLeaderboard",   label: "Leaderboard",           column: 1, row: 0, section: "ui", tooltip: "Toggle the visibility of the leaderboard." },
-                    { type: "checkbox",  id: "optRenderMinimap",       label: "Minimap",               column: 1, row: 1, section: "ui", tooltip: "Toggle the visibility of the minimap." },
-                    { type: "checkbox",  id: "optReducedInfo",         label: "Extra Info",            column: 1, row: 2, section: "ui", tooltip: "Show various extra information in the bottom right corner.", reverseCheck: true },
+                    { type: "checkbox", id: "optRenderLeaderboard", label: "Leaderboard", column: 1, row: 0, section: "ui", tooltip: "Toggle the visibility of the leaderboard." },
+                    { type: "checkbox", id: "optRenderMinimap", label: "Minimap", column: 1, row: 1, section: "ui", tooltip: "Toggle the visibility of the minimap." },
+                    { type: "checkbox", id: "optReducedInfo", label: "Extra Info", column: 1, row: 2, section: "ui", tooltip: "Show various extra information in the bottom right corner.", reverseCheck: true },
 
                     // Extra
-                    { type: "option",    id: "optUiScale",             label: "",                      column: 0, row: 0, section: "extra", tooltip: "Configure the size of the user interface.",
-                      optionData: optionsMenu_getUserInterfaceOptions(),
-                      width: 202.5,
-                      location: "auto",
-                      trigger: (data, theChosenOne) => {
-                        let doc = document.getElementById(data.id);
-                        doc.value = theChosenOne.value;
-                        util.submitToLocalStorage(data.id);
-                        data.optionService.opened = false;
-                        data.optionService.selected = data.label;
-                        loadSettings();
-                      }
+                    {
+                        type: "option", id: "optUiScale", label: "", column: 0, row: 0, section: "extra", tooltip: "Configure the size of the user interface.",
+                        optionData: optionsMenu_getUserInterfaceOptions(),
+                        width: 202.5,
+                        location: "auto",
+                        trigger: (data, theChosenOne) => {
+                            let doc = document.getElementById(data.id);
+                            doc.value = theChosenOne.value;
+                            util.submitToLocalStorage(data.id);
+                            data.optionService.opened = false;
+                            data.optionService.selected = data.label;
+                            loadSettings();
+                        }
                     },
-                    { type: "checkbox",  id: "smoothCamera",           label: "Smooth Camera",         column: 0, row: 1, section: "extra", tooltip: "Make the camera follow your tank instead of being fixed at it." },
-                    { type: "checkbox",  id: "autoLevelUp",            label: "Auto-Level Up",         column: 0, row: 2, section: "extra", tooltip: "Automatically level you up to level 45 upon joining the game." },
+                    { type: "checkbox", id: "smoothCamera", label: "Smooth Camera", column: 0, row: 1, section: "extra", tooltip: "Make the camera follow your tank instead of being fixed at it." },
+                    { type: "checkbox", id: "autoLevelUp", label: "Auto-Level Up", column: 0, row: 2, section: "extra", tooltip: "Automatically level you up to level 45 upon joining the game." },
 
-                    { type: "checkbox",  id: "optFancy",               label: "Fading Animation",      column: 1, row: 1, section: "extra", tooltip: "Make dying entities fade out instead of shrinking until disappearing.\n" + "May slightly lower the frame rate." },
-                    { type: "checkbox",  id: "optIncognitoMode",       label: "Incognito Mode",        column: 1, row: 2, section: "extra", tooltip: "Hide you from the leaderboard and make your score appear low to other players." },
+                    { type: "checkbox", id: "optFancy", label: "Fading Animation", column: 1, row: 1, section: "extra", tooltip: "Make dying entities fade out instead of shrinking until disappearing.\n" + "May slightly lower the frame rate." },
+                    { type: "checkbox", id: "optIncognitoMode", label: "Incognito Mode", column: 1, row: 2, section: "extra", tooltip: "Hide you from the leaderboard and make your score appear low to other players." },
 
                     // Performance
-                    { id: "optLowResolution",       label: "Low Resolution",        column: 1, row: 0, section: "perf", tooltip: "Lower the game's resolution.\n" + "May help to improve the frame rate." },
+                    { id: "optLowResolution", label: "Low Resolution", column: 1, row: 0, section: "perf", tooltip: "Lower the game's resolution.\n" + "May help to improve the frame rate." },
                 ];
 
                 for (const cb of global.optionsCheckboxes) {
@@ -4945,11 +5007,11 @@ import * as socketStuff from "./socketinit.js";
             for (let i = 0; i < global.optionsCheckboxes.length; i++) {
                 const cb = global.optionsCheckboxes[i];
                 let baseY = PANEL_Y + 45;
-                if (cb.section === "ui")    baseY = PANEL_Y + 400;
+                if (cb.section === "ui") baseY = PANEL_Y + 400;
                 if (cb.section === "extra") baseY = PANEL_Y + 590;
-                if (cb.section === "perf")  baseY = PANEL_Y + 760;
+                if (cb.section === "perf") baseY = PANEL_Y + 760;
 
-                const baseXLeft  = panelX + 20;
+                const baseXLeft = panelX + 20;
                 const baseXRight = panelX + PANEL_WIDTH / 2 + 7.5;
 
                 const x = (cb.column === 0 ? baseXLeft : baseXRight);
@@ -5031,7 +5093,7 @@ import * as socketStuff from "./socketinit.js";
                     cb.tooltipService.x = hitX;
                     cb.tooltipService.y = hitY + 35 - scrollY * clickableRatio;
                     cb.tooltipService.targetAlpha = 0;
-                    cb.bounds = {x: x, width: 150};
+                    cb.bounds = { x: x, width: 150 };
                     let listFolder = config[cb.listTarget];
                     const rawStrokeValue = listFolder[cb.target] ?? 0;
                     const strokeValue = Math.max(cb.maxLowestValue, Math.min(cb.maxValue, rawStrokeValue));
@@ -5330,9 +5392,9 @@ import * as socketStuff from "./socketinit.js";
     };
 
     let animationFrame =
-    (!/Chrome\/8[4-6]\.0\.41([4-7][0-9]|8[0-3])\./.test(navigator.userAgent) &&
-      window.requestAnimationFrame) ||
-    ((a) => setTimeout(() => a(Date.now()), 1e3 / 60));
+        (!/Chrome\/8[4-6]\.0\.41([4-7][0-9]|8[0-3])\./.test(navigator.userAgent) &&
+            window.requestAnimationFrame) ||
+        ((a) => setTimeout(() => a(Date.now()), 1e3 / 60));
     function animloop(tick) {
         if (document.getElementById("gameAreaWrapper").style.display === "none") {
             setTimeout(() => animloop(Date.now()), 200); // Slow down when tab is hidden
