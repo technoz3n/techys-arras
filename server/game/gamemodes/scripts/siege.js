@@ -88,7 +88,8 @@ class Siege {
             
             // diep bosses
             [15, "fallenBooster"],
-        
+            [15, "fallenOverlord"],
+
             //terrestrials
             [25, "ares"],
             [25, "gersemi"],
