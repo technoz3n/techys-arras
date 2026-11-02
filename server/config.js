@@ -198,7 +198,7 @@ module.exports = {
 
     // The message that appears once a player spawns.
     spawn_message: "You have spawned! Welcome to the game.\n"
-                 + "You will be invulnerable until you move or shoot.",
+        + "You will be invulnerable until you move or shoot.",
     token_message: "Friendly reminder: Please do not repeatedly kill others with an overpowered tank.",
 
     chat_message_duration: 15_000, // How long a chat message lasts in milliseconds.
@@ -266,7 +266,7 @@ module.exports = {
 
     // Tiered Food
     food_types: Array(3).fill().map((_, i, a) => [ // Possible food types outside the nest
-    // Chance of spawning in exponents of 4
+        // Chance of spawning in exponents of 4
         4 ** (a.length - i),
         // 4-wide dimension of the 4 shape tiers - regular, beta, alpha, omega
         Array(3).fill().map((_, j, b) => [
@@ -287,7 +287,7 @@ module.exports = {
         ])
     ]),
     food_types_nest: Array(2).fill().map((_, i, a) => [ // Possible food types in the nest
-    // Chance of spawning in exponents of 4
+        // Chance of spawning in exponents of 4
         4 ** (a.length - i),
         // 4-wide dimension of the 4 shape tiers - regular, beta, alpha, omega
         Array(3).fill().map((_, j, b) => [
@@ -314,10 +314,10 @@ module.exports = {
         [1, [
             [65, "egg"], [64, "triangle"], [45, "square"], [7, "pentagon"]//, [1, "hexagon"]
         ]],
-        [1/50000, [
+        [1 / 50000, [
             [625, "gem"], [125, "shinyTriangle"], [25, "shinySquare"], [5, "shinyPentagon"]//, [1, "shinyHexagon"]
         ]],
-        [1/1000000, [
+        [1 / 1000000, [
             [1296, "jewel"], [216, "legendaryTriangle"], [36, "legendarySquare"], [6, "legendaryPentagon"]//, [1, "legendaryHexagon"]
         ]]
     ],
@@ -330,7 +330,7 @@ module.exports = {
         [1, [
             [1, "crasher"]
         ]],
-        [1/20, [
+        [1 / 20, [
             [1, "sentryGun"], [1, "sentrySwarm"], [1, "sentryTrap"]
         ]]
     ],
@@ -338,7 +338,7 @@ module.exports = {
     // Bosses
     enable_bosses: true,
     boss_control: false, // Allows players to control bosses like dominators and motherships.
-    boss_spawn_cooldown: 260, // The delay (in seconds) between boss spawns.
+    boss_spawn_cooldown: 120, // The delay (in seconds) between boss spawns.
     boss_spawn_delay: 6, // The delay (in seconds) between the boss spawn being announced and the boss(es) actually spawning.
     boss_types: [
         {
@@ -354,17 +354,25 @@ module.exports = {
             bosses: ["summoner", "eliteSkimmer", "nestKeeper"],
             amount: [2, 2, 1], chance: 1, nameType: "a",
             message: "A strange trembling..."
+        },
+        {
+            bosses: [
+                "fallenBooster"
+            ],
+            amount: [0, 0, 1],
+            chance: 0.5,
+            message: "The fallen guardians have returned..."
         }
-    /*{
-      bosses: ["paladin", "freyja", "zaphkiel", "nyx", "theia"],
-      amount: [1], chance: 0.01,
-      message: "The world tremors as the celestials are reborn anew!",
-    },
-    {
-      bosses: ["julius", "genghis", "napoleon"],
-      amount: [1], chance: 0.1,
-      message: "The darkness arrives as the realms are torn apart!",
-    }*/
+        /*{
+          bosses: ["paladin", "freyja", "zaphkiel", "nyx", "theia"],
+          amount: [1], chance: 0.01,
+          message: "The world tremors as the celestials are reborn anew!",
+        },
+        {
+          bosses: ["julius", "genghis", "napoleon"],
+          amount: [1], chance: 0.1,
+          message: "The darkness arrives as the realms are torn apart!",
+        }*/
     ],
 
     // How many members a team can have in comparison to an unweighed team.
