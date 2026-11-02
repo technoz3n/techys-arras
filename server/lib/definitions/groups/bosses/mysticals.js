@@ -274,6 +274,42 @@ Class.witch = {
     }, {delayIncrement: 0.5}), 3)
 }
 
+Class.fallenOverlord = {
+    PARENT: "miniboss",
+    LABEL: "Fallen Overlord",
+    DANGER: 8,
+    COLOR: "gray",
+    UPGRADE_COLOR: "gray",
+    SIZE: 26,
+    MAX_CHILDREN: 12,
+    GUNS: weaponArray({
+        POSITION: {
+            LENGTH: 6,
+            WIDTH: 12,
+            ASPECT: 1.2,
+            X: 8
+        },
+        PROPERTIES: {
+            SHOOT_SETTINGS: combineStats([
+                g.drone,
+                g.overseer,
+                {
+                    reload: 1 / 0.36,
+                    speed: 1.7,
+                    damage: 0.56,
+                    health: 12.5,
+                    size: 0.5
+                }
+            ]),
+            TYPE: "drone",
+            AUTOFIRE: true,
+            SYNCS_SKILLS: true,
+            STAT_CALCULATOR: "drone",
+            WAIT_TO_CYCLE: true
+        }
+    }, 4)
+}
+
 if (Config.classic_food) {
     Class.menu_mysticalBosses.UPGRADES_TIER_0.splice(5, 0, "sangoma", "preacher", "herbalist")
     Class.shaman.COLOR = "magenta"
